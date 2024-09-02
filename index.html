@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flair - Empowering Hip Hop Artists</title>
+
+    <!-- Include Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #5A2DD2; /* Flair Brand Purple */
+            padding: 20px;
+            text-align: center;
+        }
+
+        header img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 36px;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #3D1C99; /* Darker Shade of Flair Brand Purple */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background-color: #5A2DD2; /* Flair Brand Purple */
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin: 0 0 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin: 0 0 40px;
+        }
+
+        .cta-button {
+            background-color: #7844E3; /* Lighter Purple for CTAs */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #3D1C99; /* Hover color for CTA buttons */
+        }
+
+        .features {
+            background-color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .features h3 {
+            font-size: 32px;
+            color: #5A2DD2; /* Flair Brand Purple */
+            margin-bottom: 50px;
+        }
+
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .feature-card {
+            background-color: #f4f4f4;
+            width: 30%;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .feature-card img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 24px;
+            color: #3D1C99; /* Darker Shade of Flair Brand Purple */
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+        }
+
+        .visuals {
+            background-color: #EDEDED;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .visuals h3 {
+            font-size: 32px;
+            color: #5A2DD2; /* Flair Brand Purple */
+            margin-bottom: 50px;
+        }
+
+        .visuals img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .testimonials {
+            padding: 50px 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .testimonials h3 {
+            font-size: 32px;
+            color: #5A2DD2; /* Flair Brand Purple */
+            margin-bottom: 50px;
+        }
+
+        .testimonial {
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .cta-section {
+            background-color: #5A2DD2; /* Flair Brand Purple */
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section a {
+            background-color: #7844E3; /* Lighter Purple for CTAs */
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-section a:hover {
+            background-color: #3D1C99; /* Hover color for CTA buttons */
+        }
+
+        footer {
+            background-color: #3D1C99; /* Darker Shade of Flair Brand Purple */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .feature-card {
+                width: 90%;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            nav a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <img src="logo.png" alt="Flair Logo">
+        <h1>Flair - Empowering Hip Hop Artists</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#">Explore Cities</a>
+        <a href="#">Audience Analytics</a>
+        <a href="#">Touring Opportunities</a>
+        <a href="#">Industry Trends</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Empower Your Music Career with Data-Driven Insights</h2>
+        <p>Discover the best cities, connect with your audience, and plan successful tours with Flair.</p>
+        <a href="#" class="cta-button">Get Started</a>
+        <a href="#" class="cta-button">Learn More</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h3>Key Features</h3>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <img src="images/city-icon.png" alt="City Insights">
+                <h4>City Insights</h4>
+                <p>Find the perfect city to grow your career with data on cost of living and music scenes.</p>
+            </div>
+            <div class="feature-card">
+                <img src="images/audience-icon.png" alt="Audience Analytics">
+                <h4>Audience Analytics</h4>
+                <p>Understand your fans with detailed engagement and demographic data.</p>
+            </div>
+            <div class="feature-card">
+                <img src="images/touring-icon.png" alt="Touring Opportunities">
+                <h4>Touring Opportunities</h4>
+                <p>Plan your next tour with data on popular venues and upcoming events.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization Section -->
+    <section class="visuals">
+        <h3>Explore Data-Driven Insights</h3>
+        <img src="images/map-visual.png" alt="Map Visualization">
+        <img src="images/audience-heatmap.png" alt="Audience Heatmap">
+        <img src="images/genre-trends.png" alt="Genre Trends">
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h3>What Artists Are Saying</h3>
+        <div class="testimonial">
+            "Flair helped me find the perfect city to base my music career. The insights are game-changing!" – Artist Name
+        </div>
+        <div class="testimonial">
+            "With Flair’s data, I was able to plan a tour that really resonated with my fans." – Artist Name
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta-section">
+        <h2>Ready to Take Your Career to the Next Level?</h2>
+        <a href="#">Sign Up for Free</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Flair. All rights reserved.</p>
+        <p>Connect with us on <a href="#">Instagram</a>, <a href="#">Twitter</
