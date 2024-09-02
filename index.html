@@ -88,8 +88,42 @@
             background-color: #3D1C99; /* Hover color for CTA buttons */
         }
 
-        .features {
+        .how-it-works {
             background-color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .how-it-works h3 {
+            font-size: 32px;
+            color: #5A2DD2; /* Flair Brand Purple */
+            margin-bottom: 30px;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .step {
+            width: 30%;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .step h4 {
+            font-size: 24px;
+            color: #3D1C99; /* Darker Shade of Flair Brand Purple */
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 16px;
+        }
+
+        .features {
+            background-color: #EDEDED;
             padding: 50px 20px;
             text-align: center;
         }
@@ -97,7 +131,7 @@
         .features h3 {
             font-size: 32px;
             color: #5A2DD2; /* Flair Brand Purple */
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .feature-cards {
@@ -107,7 +141,7 @@
         }
 
         .feature-card {
-            background-color: #f4f4f4;
+            background-color: white;
             width: 30%;
             margin-bottom: 20px;
             padding: 20px;
@@ -130,24 +164,6 @@
             font-size: 16px;
         }
 
-        .visuals {
-            background-color: #EDEDED;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .visuals h3 {
-            font-size: 32px;
-            color: #5A2DD2; /* Flair Brand Purple */
-            margin-bottom: 50px;
-        }
-
-        .visuals img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
         .testimonials {
             padding: 50px 20px;
             background-color: #f4f4f4;
@@ -157,7 +173,7 @@
         .testimonials h3 {
             font-size: 32px;
             color: #5A2DD2; /* Flair Brand Purple */
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .testimonial {
@@ -210,7 +226,7 @@
         }
 
         @media (max-width: 768px) {
-            .feature-card {
+            .step, .feature-card {
                 width: 90%;
             }
 
@@ -253,54 +269,28 @@
         <a href="#" class="cta-button">Learn More</a>
     </section>
 
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h3>How Flair Works</h3>
+        <div class="steps">
+            <div class="step">
+                <h4>Step 1: Explore</h4>
+                <p>Discover the best cities to grow your music career based on genre popularity and audience data.</p>
+            </div>
+            <div class="step">
+                <h4>Step 2: Analyze</h4>
+                <p>Use detailed audience analytics to understand your fanbase and refine your strategy.</p>
+            </div>
+            <div class="step">
+                <h4>Step 3: Take Action</h4>
+                <p>Plan your next tour, release, or collaboration based on insights from Flair.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features">
         <h3>Key Features</h3>
         <div class="feature-cards">
             <div class="feature-card">
-                <img src="images/city-icon.png" alt="City Insights">
-                <h4>City Insights</h4>
-                <p>Find the perfect city to grow your career with data on cost of living and music scenes.</p>
-            </div>
-            <div class="feature-card">
-                <img src="images/audience-icon.png" alt="Audience Analytics">
-                <h4>Audience Analytics</h4>
-                <p>Understand your fans with detailed engagement and demographic data.</p>
-            </div>
-            <div class="feature-card">
-                <img src="images/touring-icon.png" alt="Touring Opportunities">
-                <h4>Touring Opportunities</h4>
-                <p>Plan your next tour with data on popular venues and upcoming events.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Data Visualization Section -->
-    <section class="visuals">
-        <h3>Explore Data-Driven Insights</h3>
-        <img src="images/map-visual.png" alt="Map Visualization">
-        <img src="images/audience-heatmap.png" alt="Audience Heatmap">
-        <img src="images/genre-trends.png" alt="Genre Trends">
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h3>What Artists Are Saying</h3>
-        <div class="testimonial">
-            "Flair helped me find the perfect city to base my music career. The insights are game-changing!" – Artist Name
-        </div>
-        <div class="testimonial">
-            "With Flair’s data, I was able to plan a tour that really resonated with my fans." – Artist Name
-        </div>
-    </section>
-
-    <!-- Call-to-Action Section -->
-    <section class="cta-section">
-        <h2>Ready to Take Your Career to the Next Level?</h2>
-        <a href="#">Sign Up for Free</a>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Flair. All rights reserved.</p>
-        <p>Connect with us on <a href="#">Instagram</a>, <a href
+                <img src="images/c
