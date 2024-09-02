@@ -23,7 +23,6 @@
             background-color: #5A2DD2; /* Flair Brand Purple */
             padding: 20px;
             text-align: center;
-            position: relative;
         }
 
         header img {
@@ -35,23 +34,6 @@
             margin-top: 0;
             color: white;
             font-size: 36px;
-        }
-
-        nav {
-            background-color: #3D1C99; /* Darker Shade of Flair Brand Purple */
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
         }
 
         .hero {
@@ -88,42 +70,7 @@
             background-color: #3D1C99; /* Hover color for CTA buttons */
         }
 
-        .how-it-works {
-            background-color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .how-it-works h3 {
-            font-size: 32px;
-            color: #5A2DD2; /* Flair Brand Purple */
-            margin-bottom: 30px;
-        }
-
-        .steps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .step {
-            width: 30%;
-            margin-bottom: 20px;
-            padding: 20px;
-        }
-
-        .step h4 {
-            font-size: 24px;
-            color: #3D1C99; /* Darker Shade of Flair Brand Purple */
-            margin-bottom: 10px;
-        }
-
-        .step p {
-            font-size: 16px;
-        }
-
         .features {
-            background-color: #EDEDED;
             padding: 50px 20px;
             text-align: center;
         }
@@ -141,17 +88,13 @@
         }
 
         .feature-card {
-            background-color: white;
+            background-color: #f4f4f4;
             width: 30%;
             margin-bottom: 20px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-        }
-
-        .feature-card img {
-            width: 60px;
-            margin-bottom: 20px;
+            text-align: left;
         }
 
         .feature-card h4 {
@@ -162,23 +105,6 @@
 
         .feature-card p {
             font-size: 16px;
-        }
-
-        .testimonials {
-            padding: 50px 20px;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-
-        .testimonials h3 {
-            font-size: 32px;
-            color: #5A2DD2; /* Flair Brand Purple */
-            margin-bottom: 30px;
-        }
-
-        .testimonial {
-            margin-bottom: 30px;
-            font-style: italic;
         }
 
         .cta-section {
@@ -226,7 +152,7 @@
         }
 
         @media (max-width: 768px) {
-            .step, .feature-card {
+            .feature-card {
                 width: 90%;
             }
 
@@ -236,10 +162,6 @@
 
             .hero p {
                 font-size: 20px;
-            }
-
-            nav a {
-                font-size: 16px;
             }
         }
     </style>
@@ -253,84 +175,40 @@
         <h1>Flair - Empowering Hip Hop Artists</h1>
     </header>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#">Explore Cities</a>
-        <a href="#">Audience Analytics</a>
-        <a href="#">Touring Opportunities</a>
-        <a href="#">Industry Trends</a>
-    </nav>
-
     <!-- Hero Section -->
     <section class="hero">
-        <h2>Empower Your Music Career with Data-Driven Insights</h2>
-        <p>Discover the best cities, connect with your audience, and plan successful tours with Flair.</p>
-        <a href="#" class="cta-button">Get Started</a>
-        <a href="#" class="cta-button">Learn More</a>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works">
-        <h3>How Flair Works</h3>
-        <div class="steps">
-            <div class="step">
-                <h4>Step 1: Explore</h4>
-                <p>Discover the best cities to grow your music career based on genre popularity and audience data.</p>
-            </div>
-            <div class="step">
-                <h4>Step 2: Analyze</h4>
-                <p>Use detailed audience analytics to understand your fanbase and refine your strategy.</p>
-            </div>
-            <div class="step">
-                <h4>Step 3: Take Action</h4>
-                <p>Plan your next tour, release, or collaboration based on insights from Flair.</p>
-            </div>
-        </div>
+        <h2>Data-Driven Insights for Hip Hop Artists</h2>
+        <p>Empower your music career with real-time data on genre popularity, audience engagement, and touring opportunities.</p>
+        <a href="#" class="cta-button">Get Started for Free</a>
     </section>
 
     <!-- Features Section -->
     <section class="features">
-        <h3>Key Features</h3>
+        <h3>Why Choose Flair?</h3>
         <div class="feature-cards">
             <div class="feature-card">
-                <img src="images/cIt looks like the response got cut off. I’ll provide the rest of the code that continues from where it was interrupted and ensures that the landing page effectively communicates the value of Flair:
-
-### Continuing from the Features Section:
-
-```html
+                <h4>Genre Popularity & Audience Location</h4>
+                <p>Discover where your music resonates the most and focus your efforts on the most promising markets.</p>
+            </div>
             <div class="feature-card">
-                <img src="images/city-icon.png" alt="City Insights">
                 <h4>City Insights</h4>
-                <p>Find the perfect city to grow your career with data on cost of living, music scenes, and genre popularity.</p>
+                <p>Identify the best cities for live performances and promotions based on detailed data about the local hip hop scene.</p>
             </div>
             <div class="feature-card">
-                <img src="images/audience-icon.png" alt="Audience Analytics">
-                <h4>Audience Analytics</h4>
-                <p>Understand your fans with detailed engagement and demographic data. Discover where your music resonates the most.</p>
+                <h4>Touring & Performance Opportunities</h4>
+                <p>Plan successful tours by identifying the best venues and events tailored to hip hop artists.</p>
             </div>
             <div class="feature-card">
-                <img src="images/touring-icon.png" alt="Touring Opportunities">
-                <h4>Touring Opportunities</h4>
-                <p>Plan your next tour by finding the best venues and events in cities where your music is in demand.</p>
+                <h4>Audience Analytics & Engagement</h4>
+                <p>Understand your audience’s demographics and engagement patterns to tailor your content and strategy.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h3>What Artists Are Saying</h3>
-        <div class="testimonial">
-            "Flair helped me find the perfect city to base my music career. The insights are game-changing!" – Artist Name
-        </div>
-        <div class="testimonial">
-            "With Flair’s data, I was able to plan a tour that really resonated with my fans." – Artist Name
         </div>
     </section>
 
     <!-- Call-to-Action Section -->
     <section class="cta-section">
         <h2>Ready to Take Your Career to the Next Level?</h2>
-        <a href="#" class="cta-button">Sign Up for Free</a>
+        <a href="#" class="cta-button">Sign Up Now</a>
     </section>
 
     <!-- Footer Section -->
