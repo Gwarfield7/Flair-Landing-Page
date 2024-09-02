@@ -85,6 +85,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            align-items: stretch; /* Ensure all cards stretch to the same height */
         }
 
         .feature-card {
@@ -95,6 +96,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensures content is spaced evenly */
         }
 
         .feature-card h4 {
@@ -105,6 +109,21 @@
 
         .feature-card p {
             font-size: 16px;
+            flex-grow: 1; /* Allow the text to take up available space */
+        }
+
+        @media (max-width: 768px) {
+            .feature-card {
+                width: 90%;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
         }
 
         .cta-section {
@@ -150,20 +169,6 @@
             color: white;
             text-decoration: underline;
         }
-
-        @media (max-width: 768px) {
-            .feature-card {
-                width: 90%;
-            }
-
-            .hero h2 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 20px;
-            }
-        }
     </style>
 </head>
 
@@ -171,7 +176,7 @@
 
     <!-- Header Section -->
     <header>
-        <img src="flairlogo2.png" alt="Flair Logo">
+        <img src="flairlogo.png" alt="Flair Logo">
         <h1>Flair - Empowering Hip Hop Artists</h1>
     </header>
 
