@@ -104,7 +104,7 @@
         .button:hover {
             background-color: #E91E63;
         }
-        #typeform-embed {
+        #form-embed {
             display: none;
             position: fixed;
             top: 0;
@@ -114,12 +114,12 @@
             z-index: 1000;
             background-color: rgba(0, 0, 0, 0.8);
         }
-        #typeform-embed iframe {
+        #form-embed iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-        #close-typeform {
+        #close-form {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -144,7 +144,7 @@
         <section class="hero">
             <h1>Elevate Your Hip-Hop Career</h1>
             <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
-            <button class="button" onclick="showTypeform()">Start Your Journey</button>
+            <button class="button" onclick="showForm()">Start Your Journey</button>
         </section>
 
         <section id="features" class="features">
@@ -204,25 +204,25 @@
 
         <section id="cta" class="cta">
             <h2>Ready to Take Your Career to the Next Level?</h2>
-            <button class="button" onclick="showTypeform()">Find Your Path</button>
+            <button class="button" onclick="showForm()">Find Your Path</button>
         </section>
     </div>
 
-    <div id="typeform-embed">
-        <div id="close-typeform" onclick="hideTypeform()">×</div>
-        <iframe id="typeform-iframe" width="100%" height="100%" frameborder="0"></iframe>
+    <div id="form-embed">
+        <div id="close-form" onclick="hideForm()">×</div>
+        <iframe id="form-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
     </div>
 
     <script>
-        function showTypeform() {
-            document.getElementById('typeform-iframe').src = 'https://form.typeform.com/to/KQO5uxmy';
-            document.getElementById('typeform-embed').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when Typeform is open
+        function showForm() {
+            document.getElementById('form-iframe').src = 'https://docs.google.com/forms/d/e/1FAIpQLSdXYZ/formResponse'; // Replace with your Google Form URL
+            document.getElementById('form-embed').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when form is open
         }
 
-        function hideTypeform() {
-            document.getElementById('typeform-embed').style.display = 'none';
-            document.getElementById('typeform-iframe').src = '';
+        function hideForm() {
+            document.getElementById('form-embed').style.display = 'none';
+            document.getElementById('form-iframe').src = '';
             document.body.style.overflow = 'auto'; // Re-enable scrolling
         }
     </script>
