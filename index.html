@@ -52,40 +52,6 @@
             max-width: 600px;
             margin: 0 auto 30px;
         }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 50px 0;
-        }
-        .feature {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .feature h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-        .benefits {
-            background-color: var(--secondary-color);
-            padding: 80px 0;
-        }
-        .benefits h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-        }
-        .benefit {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .benefit-icon {
-            font-size: 2em;
-            margin-right: 20px;
-        }
         .cta {
             text-align: center;
             padding: 100px 0;
@@ -104,29 +70,13 @@
         .button:hover {
             background-color: #E91E63;
         }
-        #form-embed {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        iframe {
+            display: block;
+            margin: 50px auto;
             width: 100%;
-            height: 100%;
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        #form-embed iframe {
-            width: 100%;
-            height: 100%;
+            max-width: 640px;
+            height: 1721px;
             border: none;
-        }
-        #close-form {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            z-index: 1001;
         }
     </style>
 </head>
@@ -136,7 +86,6 @@
             <div class="logo">Flair</div>
             <nav>
                 <a href="#features">Features</a>
-                <a href="#benefits">Benefits</a>
                 <a href="#cta">Get Started</a>
             </nav>
         </header>
@@ -144,87 +93,13 @@
         <section class="hero">
             <h1>Elevate Your Hip-Hop Career</h1>
             <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
-            <button class="button" onclick="showForm()">Start Your Journey</button>
-        </section>
-
-        <section id="features" class="features">
-            <div class="feature">
-                <h3>City Insights</h3>
-                <p>Compare cities based on cost of living, safety, and music industry presence.</p>
-            </div>
-            <div class="feature">
-                <h3>Genre Popularity</h3>
-                <p>Discover where your genre is trending and where your fans are most active.</p>
-            </div>
-            <div class="feature">
-                <h3>Career Opportunities</h3>
-                <p>Access job listings, music events, and networking opportunities.</p>
-            </div>
-            <div class="feature">
-                <h3>Audience Analytics</h3>
-                <p>Gain insights into your fanbase, including demographics and engagement metrics.</p>
-            </div>
-            <div class="feature">
-                <h3>Event Listings</h3>
-                <p>Find local events where you can perform or network to boost your career.</p>
-            </div>
-        </section>
-
-        <section id="benefits" class="benefits">
-            <h2>Why Choose Flair?</h2>
-            <div class="benefit">
-                <div class="benefit-icon">📊</div>
-                <div>
-                    <h3>Actionable Insights</h3>
-                    <p>Make informed decisions about where to live, perform, or tour based on real data.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">🎯</div>
-                <div>
-                    <h3>Optimize Marketing</h3>
-                    <p>Discover where your music is most popular and focus your efforts for maximum impact.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">📈</div>
-                <div>
-                    <h3>Grow Your Career</h3>
-                    <p>Find opportunities, connect with fans, and understand your audience to accelerate your success.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">🔔</div>
-                <div>
-                    <h3>Stay Informed</h3>
-                    <p>Access real-time event data to find performance opportunities in key cities.</p>
-                </div>
-            </div>
         </section>
 
         <section id="cta" class="cta">
-            <h2>Ready to Take Your Career to the Next Level?</h2>
-            <button class="button" onclick="showForm()">Find Your Path</button>
+            <h2>Sign Up to Get Started</h2>
+            <!-- Google Form Embed -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe8RzWJ6uUmGoM8mYyBHnNBhYWlWIB49TxH_SH0qh8Q61sckQ/viewform?embedded=true" width="640" height="1721" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </section>
     </div>
-
-    <div id="form-embed">
-        <div id="close-form" onclick="hideForm()">×</div>
-        <iframe id="form-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
-    </div>
-
-    <script>
-        function showForm() {
-            document.getElementById('form-iframe').src = 'https://docs.google.com/forms/d/e/1FAIpQLSdXYZ/formResponse'; // Replace with your Google Form URL
-            document.getElementById('form-embed').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when form is open
-        }
-
-        function hideForm() {
-            document.getElementById('form-embed').style.display = 'none';
-            document.getElementById('form-iframe').src = '';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        }
-    </script>
 </body>
 </html>
