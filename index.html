@@ -104,13 +104,32 @@
         .button:hover {
             background-color: #E91E63;
         }
-        iframe {
-            display: block;
-            margin: 50px auto;
+        /* Modal for Google Form */
+        #google-form-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        #google-form-modal iframe {
+            width: 100%;
+            height: 80%;
             max-width: 640px;
-            height: 1721px;
+            margin: 50px auto;
+            display: block;
             border: none;
+        }
+        #close-form {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -128,6 +147,7 @@
         <section class="hero">
             <h1>Elevate Your Hip-Hop Career</h1>
             <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
+            <button class="button" onclick="showForm()">Start Your Journey</button>
         </section>
 
         <section id="features" class="features">
@@ -187,9 +207,26 @@
 
         <section id="cta" class="cta">
             <h2>Ready to Take Your Career to the Next Level?</h2>
-            <!-- Google Form Embed -->
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe8RzWJ6uUmGoM8mYyBHnNBhYWlWIB49TxH_SH0qh8Q61sckQ/viewform?embedded=true" width="640" height="1721" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <button class="button" onclick="showForm()">Start Your Journey</button>
         </section>
     </div>
+
+    <!-- Google Form Modal -->
+    <div id="google-form-modal">
+        <div id="close-form" onclick="hideForm()">×</div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe8RzWJ6uUmGoM8mYyBHnNBhYWlWIB49TxH_SH0qh8Q61sckQ/viewform?embedded=true"></iframe>
+    </div>
+
+    <script>
+        function showForm() {
+            document.getElementById('google-form-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when the form is open
+        }
+
+        function hideForm() {
+            document.getElementById('google-form-modal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+    </script>
 </body>
 </html>
