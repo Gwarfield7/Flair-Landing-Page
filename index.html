@@ -120,8 +120,7 @@
         <section class="hero">
             <h1>Elevate Your Hip-Hop Career</h1>
             <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
-            <!-- Redirect to the registration page -->
-            <a href="registration.html" class="button">Start Your Journey</a>
+            <button class="button" onclick="redirectToRegistration()">Start Your Journey</button>
         </section>
 
         <section id="features" class="features">
@@ -181,9 +180,14 @@
 
         <section id="cta" class="cta">
             <h2>Ready to Take Your Career to the Next Level?</h2>
-            <!-- Redirect to the registration page -->
-            <a href="registration.html" class="button">Find Your Path</a>
+            <button class="button" onclick="redirectToRegistration()">Find Your Path</button>
         </section>
     </div>
+
+    <script>
+        function redirectToRegistration() {
+            window.location.href = 'registration.html'; // Change this to the actual path of your registration page
+        }
+    </script>
 </body>
 </html>
