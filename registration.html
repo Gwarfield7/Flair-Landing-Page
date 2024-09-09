@@ -23,7 +23,7 @@
             height: 100vh;
         }
         .container {
-            max-width: 600px;
+            max-width: 400px;
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
@@ -39,7 +39,7 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input, select {
+        input {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -68,48 +68,15 @@
 <body>
 
     <div class="container">
-        <h2>Create Your Flair Account</h2>
+        <h2>Create Your Account</h2>
         <form action="/register" method="POST">
-            <!-- Account Information -->
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
+            <!-- Email Information -->
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
+            <!-- Password Information -->
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Create a password" required>
-
-            <!-- Music Information -->
-            <label for="artist_name">Artist Name</label>
-            <input type="text" id="artist_name" name="artist_name" placeholder="Your artist name">
-
-            <label for="genre">Genre</label>
-            <input type="text" id="genre" name="genre" placeholder="Your genre (e.g. Hip-Hop)">
-
-            <label for="location">Location (City, State)</label>
-            <input type="text" id="location" name="location" placeholder="Where are you located?">
-
-            <label for="stage">Career Stage</label>
-            <select id="stage" name="stage">
-                <option value="beginner">Beginner</option>
-                <option value="professional">Professional</option>
-                <option value="established">Established</option>
-            </select>
-
-            <label for="help_needed">How can Flair help you?</label>
-            <select id="help_needed" name="help_needed">
-                <option value="promotion">Promotion</option>
-                <option value="networking">Networking</option>
-                <option value="collaboration">Collaboration</option>
-                <option value="resources">Resources</option>
-            </select>
-
-            <label for="music_link">Link to Your Music</label>
-            <input type="url" id="music_link" name="music_link" placeholder="Your music URL">
-
-            <label for="social_handles">Social Media Handles</label>
-            <input type="text" id="social_handles" name="social_handles" placeholder="Your social media handles">
 
             <button type="submit" class="button">Create Account</button>
         </form>
