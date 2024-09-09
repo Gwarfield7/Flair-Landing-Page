@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Your Profile - Flair</title>
+    <title>Flair - Complete Your Profile</title>
     <style>
         :root {
             --primary-color: #6200EA;
@@ -48,25 +48,26 @@
             font-size: 16px;
         }
         .button {
-            display: block;
-            width: 100%;
+            display: inline-block;
             background-color: var(--accent-color);
             color: #fff;
-            padding: 15px;
-            text-align: center;
+            padding: 15px 30px;
             font-size: 18px;
-            border: none;
+            text-decoration: none;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
         .button:hover {
             background-color: #E91E63;
         }
-        .optional {
-            color: gray;
-            font-style: italic;
-            font-size: 0.9em;
+        .skip-link {
+            text-align: center;
+            margin-top: 20px;
+            display: block;
+            color: var(--primary-color);
+            text-decoration: underline;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -74,52 +75,51 @@
 
     <div class="container">
         <h2>Complete Your Profile</h2>
-        <form action="/complete-profile" method="POST">
-            
-            <!-- Artist Name (Required) -->
-            <label for="artist_name">Artist Name</label>
-            <input type="text" id="artist_name" name="artist_name" placeholder="Enter your artist name" required>
+        <form action="/save-profile" method="POST">
+            <!-- Artist Name -->
+            <label for="artist-name">What is your artist name?</label>
+            <input type="text" id="artist-name" name="artist-name" placeholder="Enter your artist name">
 
-            <!-- Genre (Required) -->
-            <label for="genre">Genre</label>
-            <input type="text" id="genre" name="genre" placeholder="Enter your genre (e.g., Hip-Hop)" required>
+            <!-- Genre -->
+            <label for="genre">Which genre do you perform?</label>
+            <input type="text" id="genre" name="genre" placeholder="Enter your genre">
 
-            <!-- Location (Required) -->
-            <label for="location">Location (City, State)</label>
-            <input type="text" id="location" name="location" placeholder="Where are you located?" required>
+            <!-- Location -->
+            <label for="location">Where are you located?</label>
+            <input type="text" id="location" name="location" placeholder="Enter your location (City, State)">
 
-            <!-- Career Stage (Required) -->
-            <label for="stage">What stage is your career in?</label>
-            <select id="stage" name="stage" required>
-                <option value="beginner">Beginner</option>
-                <option value="emerging">Emerging</option>
-                <option value="established">Established</option>
-                <option value="professional">Professional</option>
+            <!-- Career Stage -->
+            <label for="career-stage">What stage is your career in?</label>
+            <select id="career-stage" name="career-stage">
+                <option value="Beginner">Beginner</option>
+                <option value="Emerging">Emerging</option>
+                <option value="Established">Established</option>
+                <option value="Professional">Professional</option>
             </select>
 
-            <!-- How Can Flair Help You? (Optional) -->
-            <label for="help_needed">How can Flair help you?</label>
-            <select id="help_needed" name="help_needed">
-                <option value="promotion">Promotion</option>
-                <option value="networking">Networking</option>
-                <option value="collaboration">Collaboration</option>
-                <option value="resources">Resources</option>
-                <option value="other">Other</option>
+            <!-- How can Flair help you? -->
+            <label for="help">How can Flair help you?</label>
+            <select id="help" name="help">
+                <option value="Promotion">Promotion</option>
+                <option value="Networking">Networking</option>
+                <option value="Collaboration">Collaboration</option>
+                <option value="Resources">Resources</option>
+                <option value="Other">Other</option>
             </select>
-            <span class="optional">Optional</span>
 
-            <!-- Share a Link to Your Music (Optional) -->
-            <label for="music_link">Share a link to your music</label>
-            <input type="url" id="music_link" name="music_link" placeholder="Your music URL">
-            <span class="optional">Optional</span>
+            <!-- Music Link -->
+            <label for="music-link">Please share a link to your music</label>
+            <input type="url" id="music-link" name="music-link" placeholder="Enter your music link">
 
-            <!-- Social Media Handles (Optional) -->
-            <label for="social_handles">Social Media Handles</label>
-            <textarea id="social_handles" name="social_handles" placeholder="Enter your social media handles"></textarea>
-            <span class="optional">Optional</span>
+            <!-- Social Media Handles -->
+            <label for="social-media">What are your social media handles?</label>
+            <textarea id="social-media" name="social-media" placeholder="Enter your social media handles"></textarea>
 
-            <button type="submit" class="button">Complete Profile</button>
+            <button type="submit" class="button">Save Profile</button>
         </form>
+
+        <!-- Skip for Now Link -->
+        <a class="skip-link" href="dashboard.html">Skip for Now</a>
     </div>
 
 </body>
