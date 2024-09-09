@@ -69,7 +69,7 @@
 
     <div class="container">
         <h2>Create Your Account</h2>
-        <form>
+        <form onsubmit="return redirectToProfile()">
             <!-- Email Information -->
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -78,15 +78,15 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Create a password" required>
 
-            <!-- Modified Button for Testing -->
-            <button type="button" class="button" onclick="redirectToProfile()">Create Account</button>
+            <button type="submit" class="button">Create Account</button>
         </form>
     </div>
 
     <script>
         function redirectToProfile() {
-            // Redirect to the profile setup page after registration
-            window.location.href = 'profile.html';  // This assumes 'profile.html' is in the same directory
+            // Simulate successful account creation and redirect to profile setup page
+            window.location.href = 'profile.html';  // Redirect to profile setup page
+            return false;  // Prevent form submission
         }
     </script>
 
