@@ -23,7 +23,7 @@
             height: 100vh;
         }
         .container {
-            max-width: 600px;
+            max-width: 500px;
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
@@ -39,7 +39,7 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input, select, textarea {
+        input, select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -48,23 +48,25 @@
             font-size: 16px;
         }
         .button {
-            display: inline-block;
+            display: block;
+            width: 100%;
             background-color: var(--accent-color);
             color: #fff;
-            padding: 15px 30px;
+            padding: 15px;
+            text-align: center;
             font-size: 18px;
-            text-decoration: none;
+            border: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         .button:hover {
             background-color: #E91E63;
         }
         .skip-link {
+            display: block;
             text-align: center;
             margin-top: 20px;
-            display: block;
             color: var(--primary-color);
             text-decoration: underline;
             cursor: pointer;
@@ -75,52 +77,59 @@
 
     <div class="container">
         <h2>Complete Your Profile</h2>
-        <form action="/save-profile" method="POST">
+        <form id="profile-form" onsubmit="return redirectToPostProfile()">
             <!-- Artist Name -->
-            <label for="artist-name">What is your artist name?</label>
-            <input type="text" id="artist-name" name="artist-name" placeholder="Enter your artist name">
+            <label for="artist-name">Artist Name</label>
+            <input type="text" id="artist-name" name="artistName" placeholder="Enter your artist name" required>
 
             <!-- Genre -->
             <label for="genre">Which genre do you perform?</label>
-            <input type="text" id="genre" name="genre" placeholder="Enter your genre">
+            <input type="text" id="genre" name="genre" placeholder="Enter your genre" required>
 
             <!-- Location -->
-            <label for="location">Where are you located?</label>
-            <input type="text" id="location" name="location" placeholder="Enter your location (City, State)">
+            <label for="location">Where are you located? (City, State)</label>
+            <input type="text" id="location" name="location" placeholder="Enter your location" required>
 
             <!-- Career Stage -->
             <label for="career-stage">What stage is your career in?</label>
-            <select id="career-stage" name="career-stage">
-                <option value="Beginner">Beginner</option>
-                <option value="Emerging">Emerging</option>
-                <option value="Established">Established</option>
-                <option value="Professional">Professional</option>
+            <select id="career-stage" name="careerStage" required>
+                <option value="beginner">Beginner</option>
+                <option value="emerging">Emerging</option>
+                <option value="established">Established</option>
+                <option value="professional">Professional</option>
             </select>
 
             <!-- How can Flair help you? -->
-            <label for="help">How can Flair help you?</label>
-            <select id="help" name="help">
-                <option value="Promotion">Promotion</option>
-                <option value="Networking">Networking</option>
-                <option value="Collaboration">Collaboration</option>
-                <option value="Resources">Resources</option>
-                <option value="Other">Other</option>
+            <label for="help-needed">How can Flair help you?</label>
+            <select id="help-needed" name="helpNeeded" multiple>
+                <option value="promotion">Promotion</option>
+                <option value="networking">Networking</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="resources">Resources</option>
             </select>
 
             <!-- Music Link -->
             <label for="music-link">Please share a link to your music</label>
-            <input type="url" id="music-link" name="music-link" placeholder="Enter your music link">
+            <input type="url" id="music-link" name="musicLink" placeholder="Link to your music">
 
             <!-- Social Media Handles -->
             <label for="social-media">What are your social media handles?</label>
-            <textarea id="social-media" name="social-media" placeholder="Enter your social media handles"></textarea>
+            <input type="text" id="social-media" name="socialMedia" placeholder="Your social media handles">
 
-            <button type="submit" class="button">Save Profile</button>
+            <button type="submit" class="button">Complete Profile</button>
         </form>
 
-        <!-- Skip for Now Link -->
-        <a class="skip-link" href="dashboard.html">Skip for Now</a>
+        <!-- Skip Option -->
+        <a href="postprofile.html" class="skip-link">Skip this for now</a>
     </div>
+
+    <script>
+        function redirectToPostProfile() {
+            // Simulate successful profile completion and redirect to postprofile page
+            window.location.href = 'postprofile.html';  // This assumes 'postprofile.html' is in the same directory
+            return false;  // Prevent the default form submission (remove for live use)
+        }
+    </script>
 
 </body>
 </html>
