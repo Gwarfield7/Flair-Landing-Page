@@ -141,14 +141,16 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Initialize the map when the page loads
+        let map, markers = [];
+
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize the map
-            window.map = L.map('map').setView([20, 0], 2); // Centered globally
+            map = L.map('map').setView([20, 0], 2); // Centered globally
 
             // Add OpenStreetMap tiles
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(window.map);
+            }).addTo(map);
         });
 
         // Function for Find Your Hotspots (leveraging sample data)
@@ -167,18 +169,18 @@
                 { city: 'Paris', coords: [48.8566, 2.3522] }
             ];
 
-            // Clear existing markers
-            window.map.eachLayer(function (layer) {
-                if (layer instanceof L.Marker) {
-                    window.map.removeLayer(layer);
-                }
+            // Remove previous markers
+            markers.forEach(marker => {
+                map.removeLayer(marker);
             });
+            markers = [];
 
             // Add markers to the map
             hotspots.forEach(hotspot => {
-                L.marker(hotspot.coords)
-                    .addTo(window.map)
+                const marker = L.marker(hotspot.coords)
+                    .addTo(map)
                     .bindPopup(`<b>${hotspot.city}</b><br>Trending Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}`);
+                markers.push(marker); // Store the marker for future removal
             });
         }
 
