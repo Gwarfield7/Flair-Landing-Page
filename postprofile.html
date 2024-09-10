@@ -84,42 +84,12 @@
     </header>
 
     <div class="container">
-        <section id="cityInsights">
-            <h2>City Insights</h2>
-            <div id="topCities">
-                <p>Top 5 Cities for Live Music:</p>
-                <ul>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                </ul>
-            </div>
-            <form id="cityForm">
-                <label for="userCity">Enter your city for personalized recommendations:</label>
-                <input type="text" id="userCity" name="userCity" required>
-                <button type="submit" class="cta-button">Get City Insights</button>
-            </form>
-            <ul id="city-results">
-                <!-- API results will populate here -->
-            </ul>
-            <div id="cityRecommendations" style="display: none;">
-                <!-- Recommendations will be populated here -->
-            </div>
-        </section>
 
-        <section id="genrePopularity">
-            <h2>Genre Popularity</h2>
-            <div id="popularGenres">
-                <p>Most Popular Music Genres:</p>
-                <ul>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                </ul>
-            </div>
-            <form id="genreForm">
+        <!-- Find Your Hotspots -->
+        <section id="hotspots">
+            <h2>Find Your Hotspots</h2>
+            <p>Where should you perform next? Find cities where your genre is trending.</p>
+            <form id="hotspotsForm">
                 <label for="userGenre">Select your genre:</label>
                 <select id="userGenre" name="userGenre" required>
                     <option value="">Select a genre</option>
@@ -128,119 +98,116 @@
                     <option value="pop">Pop</option>
                     <!-- Add more genres as needed -->
                 </select>
-                <button type="submit" class="cta-button">See Genre Trends</button>
+                <button type="submit" class="cta-button">Find Hotspots</button>
             </form>
-            <div id="genreInsights" style="display: none;">
-                <!-- Genre-specific insights will be populated here -->
-            </div>
-        </section>
-
-        <section id="careerOpportunities">
-            <h2>Career Opportunities</h2>
-            <div id="generalOpportunities">
-                <p>Trending Opportunities in Music:</p>
-                <ul>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                </ul>
-            </div>
-            <form id="careerGoalsForm">
-                <label for="careerGoals">Enter your career goals:</label>
-                <textarea id="careerGoals" name="careerGoals" rows="3" required></textarea>
-                <button type="submit" class="cta-button">Refine Opportunities</button>
-            </form>
-            <div id="refinedOpportunities" style="display: none;">
-                <!-- Refined opportunities will be populated here -->
-            </div>
-        </section>
-
-        <!-- Event Finder Section -->
-        <section id="eventFinder">
-            <h2>Find Music Events Near You</h2>
-            <input type="text" id="city" placeholder="Enter your city">
-            <button onclick="findEvents()" class="cta-button">Find Events</button>
-            <ul id="eventList"></ul>
-        </section>
-
-        <section id="nextSteps">
-            <h2>Next Steps</h2>
-            <ul>
-                <li>Complete your profile to get more personalized recommendations</li>
-                <li>Explore city insights to find your next performance venue</li>
-                <li>Connect with other artists in your genre</li>
+            <ul id="hotspotResults">
+                <!-- Hotspots will be displayed here -->
             </ul>
-            <a href="#" class="cta-button">Explore More</a>
         </section>
+
+        <!-- Stream Growth Wizard -->
+        <section id="streamGrowth">
+            <h2>Stream Growth Wizard</h2>
+            <p>Grow your Spotify streams with tailored strategies.</p>
+            <button class="cta-button" onclick="getStreamGrowth()">Get Growth Tips</button>
+            <ul id="growthTips">
+                <!-- Growth tips will be displayed here -->
+            </ul>
+        </section>
+
+        <!-- Monetize Your Live Shows -->
+        <section id="monetizeShows">
+            <h2>Monetize Your Live Shows</h2>
+            <p>Find the best ways to get paid for live performances in your city.</p>
+            <input type="text" id="cityShows" placeholder="Enter your city">
+            <button class="cta-button" onclick="findMonetizeOpportunities()">Find Opportunities</button>
+            <ul id="monetizeResults">
+                <!-- Monetization results will be displayed here -->
+            </ul>
+        </section>
+
+        <!-- Content Ideas Generator -->
+        <section id="contentIdeas">
+            <h2>Content Ideas Generator</h2>
+            <p>Need inspiration? Generate content ideas based on trending topics.</p>
+            <button class="cta-button" onclick="generateContentIdeas()">Generate Ideas</button>
+            <ul id="contentList">
+                <!-- Content ideas will be displayed here -->
+            </ul>
+        </section>
+
+        <!-- Find Collaborators -->
+        <section id="findCollaborators">
+            <h2>Find Collaborators</h2>
+            <p>Looking for artists to collaborate with? Discover people near you.</p>
+            <input type="text" id="collabCity" placeholder="Enter your city">
+            <button class="cta-button" onclick="findCollaborators()">Find Collaborators</button>
+            <ul id="collabResults">
+                <!-- Collaborators will be displayed here -->
+            </ul>
+        </section>
+
     </div>
 
     <script>
-        // Placeholder functions for API interactions and user inputs
-        function getCityInsights(city) {
-            console.log(`Getting insights for ${city}`);
+        // Function for Find Your Hotspots (leveraging Spotify API or similar)
+        async function findHotspots() {
+            const genre = document.getElementById('userGenre').value;
+            if (!genre) {
+                alert('Please select a genre');
+                return;
+            }
+            // Example logic for API to find hotspots
+            const hotspots = ['New York', 'Los Angeles', 'London', 'Paris']; // Sample data
+            const hotspotResults = document.getElementById('hotspotResults');
+            hotspotResults.innerHTML = hotspots.map(city => `<li>${city}</li>`).join('');
         }
 
-        function getGenreInsights(genre) {
-            console.log(`Getting insights for ${genre}`);
+        // Stream Growth Wizard function
+        async function getStreamGrowth() {
+            const growthTips = ['Use Instagram stories to link tracks', 'Collaborate with influencers', 'Optimize your playlist placements'];
+            const growthList = document.getElementById('growthTips');
+            growthList.innerHTML = growthTips.map(tip => `<li>${tip}</li>`).join('');
         }
 
-        function refineOpportunities(goals) {
-            console.log(`Refining opportunities based on: ${goals}`);
-        }
-
-        function connectSpotify() {
-            console.log('Connecting to Spotify');
-        }
-
-        function connectYouTube() {
-            console.log('Connecting to YouTube');
-        }
-
-        function connectInstagram() {
-            console.log('Connecting to Instagram');
-        }
-
-        // Event Finder Function using Songkick API
-        async function findEvents() {
-            const city = document.getElementById('city').value;
+        // Monetize Your Live Shows function (can leverage Songkick/Eventbrite APIs)
+        async function findMonetizeOpportunities() {
+            const city = document.getElementById('cityShows').value;
             if (!city) {
                 alert('Please enter a city');
                 return;
             }
-
-            const apiKey = 'YOUR_API_KEY';
-            const apiUrl = `https://api.songkick.com/api/3.0/search/locations.json?query=${city}&apikey=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-
-                if (data.resultsPage.totalEntries === 0) {
-                    alert('No events found for this city');
-                    return;
-                }
-
-                const metroAreaId = data.resultsPage.results.location[0].metroArea.id;
-                const eventsUrl = `https://api.songkick.com/api/3.0/metro_areas/${metroAreaId}/calendar.json?apikey=${apiKey}`;
-                
-                const eventsResponse = await fetch(eventsUrl);
-                const eventsData = await eventsResponse.json();
-
-                const events = eventsData.resultsPage.results.event;
-                const eventList = document.getElementById('eventList');
-                eventList.innerHTML = '';
-
-                events.forEach(event => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<strong>${event.displayName}</strong> <br> ${new Date(event.start.datetime || event.start.date).toLocaleDateString()}`;
-                    eventList.appendChild(li);
-                });
-
-            } catch (error) {
-                console.error('Error fetching events:', error);
-            }
+            // Sample logic for venues and monetization opportunities
+            const venues = ['The Forum', 'Madison Square Garden', 'The Roxy']; // Example venues
+            const monetizeList = document.getElementById('monetizeResults');
+            monetizeList.innerHTML = venues.map(venue => `<li>${venue}</li>`).join('');
         }
 
+        // Content Ideas Generator function (based on trends)
+        async function generateContentIdeas() {
+            const contentIdeas = ['Behind the scenes studio sessions', 'Q&A livestream', 'Lyric breakdown'];
+            const contentList = document.getElementById('contentList');
+            contentList.innerHTML = contentIdeas.map(idea => `<li>${idea}</li>`).join('');
+        }
+
+        // Find Collaborators (proximity-based)
+        async function findCollaborators() {
+            const city = document.getElementById('collabCity').value;
+            if (!city) {
+                alert('Please enter a city');
+                return;
+            }
+            // Sample data for collaborators
+            const collaborators = ['Artist 1', 'Producer 2', 'DJ 3']; // Example collaborators
+            const collabList = document.getElementById('collabResults');
+            collabList.innerHTML = collaborators.map(collab => `<li>${collab}</li>`).join('');
+        }
+
+        // Event listener for Hotspot form submission
+        document.getElementById('hotspotsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            findHotspots();
+        });
     </script>
 </body>  
 </html>
