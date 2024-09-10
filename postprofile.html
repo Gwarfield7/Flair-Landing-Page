@@ -59,6 +59,17 @@
             margin-bottom: 10px;
             border-radius: 4px;
         }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -90,9 +101,9 @@
                 <input type="text" id="userCity" name="userCity" required>
                 <button type="submit" class="cta-button">Get City Insights</button>
             </form>
-<ul id="city-results">
-    <!-- API results will populate here -->
-</ul>
+            <ul id="city-results">
+                <!-- API results will populate here -->
+            </ul>
             <div id="cityRecommendations" style="display: none;">
                 <!-- Recommendations will be populated here -->
             </div>
@@ -144,34 +155,12 @@
             </div>
         </section>
 
-        <section id="audienceAnalytics">
-            <h2>Audience Analytics</h2>
-            <div id="genericInsights">
-                <p>General Audience Trends:</p>
-                <ul>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                    <li class="placeholder"></li>
-                </ul>
-            </div>
-            <div id="connectAccounts">
-                <p>Connect your accounts for personalized insights:</p>
-                <button class="cta-button" onclick="connectSpotify()">Connect Spotify</button>
-                <button class="cta-button" onclick="connectYouTube()">Connect YouTube</button>
-                <button class="cta-button" onclick="connectInstagram()">Connect Instagram</button>
-            </div>
-            <div id="personalizedAnalytics" style="display: none;">
-                <!-- Personalized analytics will be populated here -->
-            </div>
-        </section>
-
-        <section id="actionableInsights">
-            <h2>Actionable Insights</h2>
-            <div id="insights">
-                <!-- Actionable insights will be populated here -->
-                <p class="placeholder"></p>
-                <p class="placeholder"></p>
-            </div>
+        <!-- Event Finder Section -->
+        <section id="eventFinder">
+            <h2>Find Music Events Near You</h2>
+            <input type="text" id="city" placeholder="Enter your city">
+            <button onclick="findEvents()" class="cta-button">Find Events</button>
+            <ul id="eventList"></ul>
         </section>
 
         <section id="nextSteps">
@@ -188,56 +177,70 @@
     <script>
         // Placeholder functions for API interactions and user inputs
         function getCityInsights(city) {
-            // API call to get city insights
-            console.log(Getting insights for ${city});
-            // Update cityRecommendations div with results
+            console.log(`Getting insights for ${city}`);
         }
 
         function getGenreInsights(genre) {
-            // API call to get genre insights
-            console.log(Getting insights for ${genre});
-            // Update genreInsights div with results
+            console.log(`Getting insights for ${genre}`);
         }
 
         function refineOpportunities(goals) {
-            // API call to refine opportunities based on goals
-            console.log(Refining opportunities based on: ${goals});
-            // Update refinedOpportunities div with results
+            console.log(`Refining opportunities based on: ${goals}`);
         }
 
         function connectSpotify() {
-            // Spotify OAuth flow
             console.log('Connecting to Spotify');
         }
 
         function connectYouTube() {
-            // YouTube OAuth flow
             console.log('Connecting to YouTube');
         }
 
         function connectInstagram() {
-            // Instagram OAuth flow
             console.log('Connecting to Instagram');
         }
 
-        // Event listeners for form submissions
-        document.getElementById('cityForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const city = document.getElementById('userCity').value;
-            getCityInsights(city);
-        });
+        // Event Finder Function using Songkick API
+        async function findEvents() {
+            const city = document.getElementById('city').value;
+            if (!city) {
+                alert('Please enter a city');
+                return;
+            }
 
-        document.getElementById('genreForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const genre = document.getElementById('userGenre').value;
-            getGenreInsights(genre);
-        });
+            const apiKey = 'YOUR_API_KEY';
+            const apiUrl = `https://api.songkick.com/api/3.0/search/locations.json?query=${city}&apikey=${apiKey}`;
 
-        document.getElementById('careerGoalsForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const goals = document.getElementById('careerGoals').value;
-            refineOpportunities(goals);
-        });
-<script> src="app.js"></script>
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.resultsPage.totalEntries === 0) {
+                    alert('No events found for this city');
+                    return;
+                }
+
+                const metroAreaId = data.resultsPage.results.location[0].metroArea.id;
+                const eventsUrl = `https://api.songkick.com/api/3.0/metro_areas/${metroAreaId}/calendar.json?apikey=${apiKey}`;
+                
+                const eventsResponse = await fetch(eventsUrl);
+                const eventsData = await eventsResponse.json();
+
+                const events = eventsData.resultsPage.results.event;
+                const eventList = document.getElementById('eventList');
+                eventList.innerHTML = '';
+
+                events.forEach(event => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${event.displayName}</strong> <br> ${new Date(event.start.datetime || event.start.date).toLocaleDateString()}`;
+                    eventList.appendChild(li);
+                });
+
+            } catch (error) {
+                console.error('Error fetching events:', error);
+            }
+        }
+
+    </script>
 </body>  
 </html>
