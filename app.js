@@ -1,7 +1,7 @@
 // This function gets city location data from OpenStreetMap's Nominatim API
 async function getCityLocation() {
     // Get the city input from the user
-    const city = document.getElementById('city-input').value;
+    const city = document.getElementById('userCity').value;
     
     // Ensure that the user entered a city name
     if (!city) {
