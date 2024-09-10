@@ -86,6 +86,7 @@
         #map {
             height: 400px;
             margin-top: 20px;
+            width: 100%; /* Ensure the map stretches fully */
         }
         @media (max-width: 768px) {
             .container {
@@ -134,47 +135,6 @@
             </div>
         </section>
 
-        <!-- Monetize Your Live Shows -->
-        <section id="monetizeShows">
-            <h2>Monetize Your Live Shows</h2>
-            <p>Find the best ways to get paid for live performances in your city.</p>
-            <input type="text" id="cityShows" placeholder="Enter your city">
-            <button class="cta-button" onclick="findMonetizeOpportunities()">Find Opportunities</button>
-            <div class="results">
-                <h3>Live Show Venues:</h3>
-                <ul id="monetizeResults">
-                    <!-- Monetization results will be displayed here -->
-                </ul>
-            </div>
-        </section>
-
-        <!-- Content Ideas Generator -->
-        <section id="contentIdeas">
-            <h2>Content Ideas Generator</h2>
-            <p>Need inspiration? Generate content ideas based on trending topics.</p>
-            <button class="cta-button" onclick="generateContentIdeas()">Generate Ideas</button>
-            <div class="results">
-                <h3>Content Ideas:</h3>
-                <ul id="contentList">
-                    <!-- Content ideas will be displayed here -->
-                </ul>
-            </div>
-        </section>
-
-        <!-- Find Collaborators -->
-        <section id="findCollaborators">
-            <h2>Find Collaborators</h2>
-            <p>Looking for artists to collaborate with? Discover people near you.</p>
-            <input type="text" id="collabCity" placeholder="Enter your city">
-            <button class="cta-button" onclick="findCollaborators()">Find Collaborators</button>
-            <div class="results">
-                <h3>Collaborators Near You:</h3>
-                <ul id="collabResults">
-                    <!-- Collaborators will be displayed here -->
-                </ul>
-            </div>
-        </section>
-
     </div>
 
     <!-- Leaflet JS -->
@@ -188,13 +148,15 @@
                 return;
             }
 
-            // Initialize the map
-            const map = L.map('map').setView([20, 0], 2); // Centered globally
+            // Initialize the map if it doesn't exist already
+            if (!window.map) {
+                window.map = L.map('map').setView([20, 0], 2); // Centered globally
+            }
 
             // Add OpenStreetMap tiles
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
+            }).addTo(window.map);
 
             // Sample hotspot data (replace with actual data)
             const hotspots = [
@@ -204,17 +166,17 @@
                 { city: 'Paris', coords: [48.8566, 2.3522] }
             ];
 
-            // Clear existing layers
-            map.eachLayer(function (layer) {
+            // Clear existing markers
+            window.map.eachLayer(function (layer) {
                 if (layer instanceof L.Marker) {
-                    map.removeLayer(layer);
+                    window.map.removeLayer(layer);
                 }
             });
 
             // Add markers to the map
             hotspots.forEach(hotspot => {
                 L.marker(hotspot.coords)
-                    .addTo(map)
+                    .addTo(window.map)
                     .bindPopup(`<b>${hotspot.city}</b><br>Trending Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}`);
             });
         }
@@ -230,39 +192,6 @@
             const growthTips = ['Use Instagram stories to link tracks', 'Collaborate with influencers', 'Optimize your playlist placements'];
             const growthList = document.getElementById('growthTips');
             growthList.innerHTML = growthTips.map(tip => `<li>${tip}</li>`).join('');
-        }
-
-        // Monetize Your Live Shows function (can leverage Songkick/Eventbrite APIs)
-        async function findMonetizeOpportunities() {
-            const city = document.getElementById('cityShows').value;
-            if (!city) {
-                alert('Please enter a city');
-                return;
-            }
-            // Sample logic for venues and monetization opportunities
-            const venues = ['The Forum', 'Madison Square Garden', 'The Roxy']; // Example venues
-            const monetizeList = document.getElementById('monetizeResults');
-            monetizeList.innerHTML = venues.map(venue => `<li>${venue}</li>`).join('');
-        }
-
-        // Content Ideas Generator function (based on trends)
-        async function generateContentIdeas() {
-            const contentIdeas = ['Behind the scenes studio sessions', 'Q&A livestream', 'Lyric breakdown'];
-            const contentList = document.getElementById('contentList');
-            contentList.innerHTML = contentIdeas.map(idea => `<li>${idea}</li>`).join('');
-        }
-
-        // Find Collaborators (proximity-based)
-        async function findCollaborators() {
-            const city = document.getElementById('collabCity').value;
-            if (!city) {
-                alert('Please enter a city');
-                return;
-            }
-            // Sample data for collaborators
-            const collaborators = ['Artist 1', 'Producer 2', 'DJ 3']; // Example collaborators
-            const collabList = document.getElementById('collabResults');
-            collabList.innerHTML = collaborators.map(collab => `<li>${collab}</li>`).join('');
         }
     </script>
 </body>
