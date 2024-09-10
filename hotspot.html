@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flair - Your Music Career Dashboard</title>
+    <title>Flair - Hotspot List</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
@@ -95,7 +95,7 @@
 <body>
     <header>
         <h1>Welcome back, <span id="userName">User</span>!</h1>
-        <p>Explore your personalized insights and opportunities below.</p>
+        <p>Explore the cities where your genre is trending!</p>
     </header>
 
     <div class="container">
@@ -119,19 +119,6 @@
             <div id="map"></div>
         </section>
 
-        <!-- Stream Growth Wizard -->
-        <section id="streamGrowth">
-            <h2>Stream Growth Wizard</h2>
-            <p>Grow your Spotify streams with tailored strategies.</p>
-            <button class="cta-button" onclick="getStreamGrowth()">Get Growth Tips</button>
-            <div class="results">
-                <h3>Stream Growth Tips:</h3>
-                <ul id="growthTips">
-                    <!-- Growth tips will be displayed here -->
-                </ul>
-            </div>
-        </section>
-
     </div>
 
     <!-- Leaflet JS -->
@@ -139,16 +126,6 @@
 
     <!-- Map functionality -->
     <script src="js/map.js"></script> <!-- Load map functionality from a separate file -->
-
-    <!-- Additional functionality -->
-    <script>
-        // Stream Growth Wizard function
-        async function getStreamGrowth() {
-            const growthTips = ['Use Instagram stories to link tracks', 'Collaborate with influencers', 'Optimize your playlist placements'];
-            const growthList = document.getElementById('growthTips');
-            growthList.innerHTML = growthTips.map(tip => `<li>${tip}</li>`).join('');
-        }
-    </script>
 
 </body>
 </html>
