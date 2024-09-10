@@ -125,7 +125,44 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <!-- Map functionality -->
-    <script src="js/map.js"></script> <!-- Load map functionality from a separate file -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize the map
+            let map = L.map('map').setView([20, 0], 2); // Center the map globally
 
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Handle form submission
+            document.getElementById('hotspotsForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Example hotspot data (replace this with actual data from your API)
+                const genre = document.getElementById('userGenre').value;
+                const hotspots = [
+                    { city: 'New York', coords: [40.7128, -74.0060] },
+                    { city: 'Los Angeles', coords: [34.0522, -118.2437] },
+                    { city: 'London', coords: [51.5074, -0.1278] },
+                    { city: 'Paris', coords: [48.8566, 2.3522] }
+                ];
+
+                // Clear existing markers
+                map.eachLayer(function (layer) {
+                    if (layer instanceof L.Marker) {
+                        map.removeLayer(layer);
+                    }
+                });
+
+                // Add new markers based on selected genre
+                hotspots.forEach(hotspot => {
+                    L.marker(hotspot.coords)
+                        .addTo(map)
+                        .bindPopup(`<b>${hotspot.city}</b><br>Trending Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}`);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
