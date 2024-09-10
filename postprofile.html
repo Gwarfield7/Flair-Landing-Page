@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flair - Find Music Events Near You</title>
+    <title>Flair - Your Music Career Dashboard</title>
     <style>
         :root {
             --primary-color: #6200EA;
-            --accent-color: #FF4081;
+            --secondary-color: #7C4DFF;
             --text-color: #333333;
             --background-color: #F5F5F5;
+            --accent-color: #FF4081;
         }
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -20,56 +21,223 @@
             padding: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        h1 {
+        header {
+            background-color: var(--primary-color);
+            color: white;
             text-align: center;
-            color: var(--primary-color);
+            padding: 20px 0;
         }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        h1, h2 {
+            margin-bottom: 20px;
         }
-        button {
-            display: block;
-            width: 100%;
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
             background-color: var(--accent-color);
-            color: #fff;
-            padding: 10px;
-            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
             border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        button:hover {
+        .cta-button:hover {
             background-color: #E91E63;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .placeholder {
+            background-color: #e0e0e0;
+            height: 20px;
+            margin-bottom: 10px;
+            border-radius: 4px;
         }
-        li {
-            background-color: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Welcome back, <span id="userName">User</span>!</h1>
+        <p>Explore your personalized insights and opportunities below.</p>
+    </header>
+
     <div class="container">
-        <h1>Find Music Events Near You</h1>
-        <input type="text" id="city" placeholder="Enter your city">
-        <button onclick="findEvents()">Find Events</button>
-        <ul id="eventList"></ul>
+        <section id="cityInsights">
+            <h2>City Insights</h2>
+            <div id="topCities">
+                <p>Top 5 Cities for Live Music:</p>
+                <ul>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                </ul>
+            </div>
+            <form id="cityForm">
+                <label for="userCity">Enter your city for personalized recommendations:</label>
+                <input type="text" id="userCity" name="userCity" required>
+                <button type="submit" class="cta-button">Get City Insights</button>
+            </form>
+<ul id="city-results">
+    <!-- API results will populate here -->
+</ul>
+            <div id="cityRecommendations" style="display: none;">
+                <!-- Recommendations will be populated here -->
+            </div>
+        </section>
+
+        <section id="genrePopularity">
+            <h2>Genre Popularity</h2>
+            <div id="popularGenres">
+                <p>Most Popular Music Genres:</p>
+                <ul>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                </ul>
+            </div>
+            <form id="genreForm">
+                <label for="userGenre">Select your genre:</label>
+                <select id="userGenre" name="userGenre" required>
+                    <option value="">Select a genre</option>
+                    <option value="hiphop">Hip-Hop</option>
+                    <option value="rock">Rock</option>
+                    <option value="pop">Pop</option>
+                    <!-- Add more genres as needed -->
+                </select>
+                <button type="submit" class="cta-button">See Genre Trends</button>
+            </form>
+            <div id="genreInsights" style="display: none;">
+                <!-- Genre-specific insights will be populated here -->
+            </div>
+        </section>
+
+        <section id="careerOpportunities">
+            <h2>Career Opportunities</h2>
+            <div id="generalOpportunities">
+                <p>Trending Opportunities in Music:</p>
+                <ul>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                </ul>
+            </div>
+            <form id="careerGoalsForm">
+                <label for="careerGoals">Enter your career goals:</label>
+                <textarea id="careerGoals" name="careerGoals" rows="3" required></textarea>
+                <button type="submit" class="cta-button">Refine Opportunities</button>
+            </form>
+            <div id="refinedOpportunities" style="display: none;">
+                <!-- Refined opportunities will be populated here -->
+            </div>
+        </section>
+
+        <section id="audienceAnalytics">
+            <h2>Audience Analytics</h2>
+            <div id="genericInsights">
+                <p>General Audience Trends:</p>
+                <ul>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                    <li class="placeholder"></li>
+                </ul>
+            </div>
+            <div id="connectAccounts">
+                <p>Connect your accounts for personalized insights:</p>
+                <button class="cta-button" onclick="connectSpotify()">Connect Spotify</button>
+                <button class="cta-button" onclick="connectYouTube()">Connect YouTube</button>
+                <button class="cta-button" onclick="connectInstagram()">Connect Instagram</button>
+            </div>
+            <div id="personalizedAnalytics" style="display: none;">
+                <!-- Personalized analytics will be populated here -->
+            </div>
+        </section>
+
+        <section id="actionableInsights">
+            <h2>Actionable Insights</h2>
+            <div id="insights">
+                <!-- Actionable insights will be populated here -->
+                <p class="placeholder"></p>
+                <p class="placeholder"></p>
+            </div>
+        </section>
+
+        <section id="nextSteps">
+            <h2>Next Steps</h2>
+            <ul>
+                <li>Complete your profile to get more personalized recommendations</li>
+                <li>Explore city insights to find your next performance venue</li>
+                <li>Connect with other artists in your genre</li>
+            </ul>
+            <a href="#" class="cta-button">Explore More</a>
+        </section>
     </div>
 
-    <script src="app.js"></script>
-</body>
+    <script>
+        // Placeholder functions for API interactions and user inputs
+        function getCityInsights(city) {
+            // API call to get city insights
+            console.log(Getting insights for ${city});
+            // Update cityRecommendations div with results
+        }
+
+        function getGenreInsights(genre) {
+            // API call to get genre insights
+            console.log(Getting insights for ${genre});
+            // Update genreInsights div with results
+        }
+
+        function refineOpportunities(goals) {
+            // API call to refine opportunities based on goals
+            console.log(Refining opportunities based on: ${goals});
+            // Update refinedOpportunities div with results
+        }
+
+        function connectSpotify() {
+            // Spotify OAuth flow
+            console.log('Connecting to Spotify');
+        }
+
+        function connectYouTube() {
+            // YouTube OAuth flow
+            console.log('Connecting to YouTube');
+        }
+
+        function connectInstagram() {
+            // Instagram OAuth flow
+            console.log('Connecting to Instagram');
+        }
+
+        // Event listeners for form submissions
+        document.getElementById('cityForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const city = document.getElementById('userCity').value;
+            getCityInsights(city);
+        });
+
+        document.getElementById('genreForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const genre = document.getElementById('userGenre').value;
+            getGenreInsights(genre);
+        });
+
+        document.getElementById('careerGoalsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const goals = document.getElementById('careerGoals').value;
+            refineOpportunities(goals);
+        });
+<script> src="app.js"></script>
+</body>  
 </html>
