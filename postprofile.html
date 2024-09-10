@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flair - Your Music Career Dashboard</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         :root {
             --primary-color: #6200EA;
@@ -49,6 +51,7 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
         .cta-button:hover {
             background-color: #E91E63;
@@ -78,6 +81,11 @@
         }
         .results span {
             font-weight: bold;
+        }
+        /* Added style for the map container */
+        #map {
+            height: 400px;
+            margin-top: 20px;
         }
         @media (max-width: 768px) {
             .container {
@@ -109,12 +117,8 @@
                 </select>
                 <button type="submit" class="cta-button">Find Hotspots</button>
             </form>
-            <div class="results">
-                <h3>Hotspot Cities:</h3>
-                <ul id="hotspotResults">
-                    <!-- Hotspots will be displayed here -->
-                </ul>
-            </div>
+            <!-- Map Container -->
+            <div id="map"></div>
         </section>
 
         <!-- Stream Growth Wizard -->
@@ -173,19 +177,53 @@
 
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Function for Find Your Hotspots (leveraging Spotify API or similar)
+        // Function for Find Your Hotspots (leveraging sample data)
         async function findHotspots() {
             const genre = document.getElementById('userGenre').value;
             if (!genre) {
                 alert('Please select a genre');
                 return;
             }
-            // Example logic for API to find hotspots
-            const hotspots = ['New York', 'Los Angeles', 'London', 'Paris']; // Sample data
-            const hotspotResults = document.getElementById('hotspotResults');
-            hotspotResults.innerHTML = hotspots.map(city => `<li>${city}</li>`).join('');
+
+            // Initialize the map
+            const map = L.map('map').setView([20, 0], 2); // Centered globally
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Sample hotspot data (replace with actual data)
+            const hotspots = [
+                { city: 'New York', coords: [40.7128, -74.0060] },
+                { city: 'Los Angeles', coords: [34.0522, -118.2437] },
+                { city: 'London', coords: [51.5074, -0.1278] },
+                { city: 'Paris', coords: [48.8566, 2.3522] }
+            ];
+
+            // Clear existing layers
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.Marker) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            // Add markers to the map
+            hotspots.forEach(hotspot => {
+                L.marker(hotspot.coords)
+                    .addTo(map)
+                    .bindPopup(`<b>${hotspot.city}</b><br>Trending Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}`);
+            });
         }
+
+        // Event listener for Hotspot form submission
+        document.getElementById('hotspotsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            findHotspots();
+        });
 
         // Stream Growth Wizard function
         async function getStreamGrowth() {
@@ -226,12 +264,6 @@
             const collabList = document.getElementById('collabResults');
             collabList.innerHTML = collaborators.map(collab => `<li>${collab}</li>`).join('');
         }
-
-        // Event listener for Hotspot form submission
-        document.getElementById('hotspotsForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            findHotspots();
-        });
     </script>
-</body>  
+</body>
 </html>
