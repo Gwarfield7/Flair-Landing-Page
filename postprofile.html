@@ -53,11 +53,12 @@
         .cta-button:hover {
             background-color: #E91E63;
         }
-        .placeholder {
-            background-color: #e0e0e0;
-            height: 20px;
-            margin-bottom: 10px;
-            border-radius: 4px;
+        .results {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
         }
         ul {
             list-style-type: none;
@@ -69,6 +70,14 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        .results li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .results span {
+            font-weight: bold;
         }
         @media (max-width: 768px) {
             .container {
@@ -100,9 +109,12 @@
                 </select>
                 <button type="submit" class="cta-button">Find Hotspots</button>
             </form>
-            <ul id="hotspotResults">
-                <!-- Hotspots will be displayed here -->
-            </ul>
+            <div class="results">
+                <h3>Hotspot Cities:</h3>
+                <ul id="hotspotResults">
+                    <!-- Hotspots will be displayed here -->
+                </ul>
+            </div>
         </section>
 
         <!-- Stream Growth Wizard -->
@@ -110,9 +122,12 @@
             <h2>Stream Growth Wizard</h2>
             <p>Grow your Spotify streams with tailored strategies.</p>
             <button class="cta-button" onclick="getStreamGrowth()">Get Growth Tips</button>
-            <ul id="growthTips">
-                <!-- Growth tips will be displayed here -->
-            </ul>
+            <div class="results">
+                <h3>Stream Growth Tips:</h3>
+                <ul id="growthTips">
+                    <!-- Growth tips will be displayed here -->
+                </ul>
+            </div>
         </section>
 
         <!-- Monetize Your Live Shows -->
@@ -121,9 +136,12 @@
             <p>Find the best ways to get paid for live performances in your city.</p>
             <input type="text" id="cityShows" placeholder="Enter your city">
             <button class="cta-button" onclick="findMonetizeOpportunities()">Find Opportunities</button>
-            <ul id="monetizeResults">
-                <!-- Monetization results will be displayed here -->
-            </ul>
+            <div class="results">
+                <h3>Live Show Venues:</h3>
+                <ul id="monetizeResults">
+                    <!-- Monetization results will be displayed here -->
+                </ul>
+            </div>
         </section>
 
         <!-- Content Ideas Generator -->
@@ -131,9 +149,12 @@
             <h2>Content Ideas Generator</h2>
             <p>Need inspiration? Generate content ideas based on trending topics.</p>
             <button class="cta-button" onclick="generateContentIdeas()">Generate Ideas</button>
-            <ul id="contentList">
-                <!-- Content ideas will be displayed here -->
-            </ul>
+            <div class="results">
+                <h3>Content Ideas:</h3>
+                <ul id="contentList">
+                    <!-- Content ideas will be displayed here -->
+                </ul>
+            </div>
         </section>
 
         <!-- Find Collaborators -->
@@ -142,9 +163,12 @@
             <p>Looking for artists to collaborate with? Discover people near you.</p>
             <input type="text" id="collabCity" placeholder="Enter your city">
             <button class="cta-button" onclick="findCollaborators()">Find Collaborators</button>
-            <ul id="collabResults">
-                <!-- Collaborators will be displayed here -->
-            </ul>
+            <div class="results">
+                <h3>Collaborators Near You:</h3>
+                <ul id="collabResults">
+                    <!-- Collaborators will be displayed here -->
+                </ul>
+            </div>
         </section>
 
     </div>
