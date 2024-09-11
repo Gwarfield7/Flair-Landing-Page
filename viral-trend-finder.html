@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flair - Viral Trend Finder</title>
+    <style>
+        :root {
+            --primary-color: #6200EA;
+            --secondary-color: #7C4DFF;
+            --text-color: #333333;
+            --background-color: #F5F5F5;
+            --accent-color: #FF4081;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: #E91E63;
+        }
+        .trend-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .trend-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .trend-item h3 {
+            margin: 0;
+        }
+        .trend-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .template-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #F0F0F0;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Viral Trend Finder</h1>
+        <p>Discover the latest trends and create viral content to grow your audience.</p>
+    </header>
 
+    <div class="container">
+
+        <!-- Trend Finder Section -->
+        <section id="trendFinder">
+            <h2>Find Trends by Genre and Location</h2>
+            <form id="trendForm">
+                <label for="userGenre">Select your genre:</label>
+                <input id="userGenre" name="userGenre" required placeholder="Type your genre here" autocomplete="off">
+
+                <label for="userLocation">Select your location:</label>
+                <input id="userLocation" name="userLocation" required placeholder="Type your location here" autocomplete="off">
+
+                <button type="submit" class="cta-button">Find Trends</button>
+            </form>
+
+            <div id="trendResults">
+                <h2>Trending Content</h2>
+                <ul id="trendList" class="trend-list">
+                    <!-- Trend items will populate here -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Post Suggestion Section -->
+        <section id="postSuggestions">
+            <h2>Post Suggestions</h2>
+            <div id="postTemplates" class="template-box">
+                <!-- Suggested post templates will be displayed here -->
+                <p>No suggestions yet. Start by finding trends above!</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const trendForm = document.getElementById('trendForm');
+            const trendList = document.getElementById('trendList');
+            const postTemplates = document.getElementById('postTemplates');
+
+            // Placeholder data for mock trending items and post templates
+            const mockTrends = [
+                { genre: 'Hip-Hop', location: 'New York', trend: '#ViralDanceChallenge', platform: 'TikTok' },
+                { genre: 'Pop', location: 'Los Angeles', trend: '#CoverSongTrend', platform: 'Instagram' },
+                { genre: 'EDM', location: 'Berlin', trend: '#DJMixChallenge', platform: 'YouTube' }
+            ];
+
+            const mockTemplates = {
+                'Hip-Hop': [
+                    'Join the #ViralDanceChallenge on TikTok and share your moves!',
+                    'Use this trending sound to create a catchy post that engages your audience.'
+                ],
+                'Pop': [
+                    'Create a cover song of the latest viral hit and share it with #CoverSongTrend!',
+                    'Collaborate with another artist to maximize your reach.'
+                ]
+            };
+
+            // Handle form submission
+            trendForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const userGenre = document.getElementById('userGenre').value.trim();
+                const userLocation = document.getElementById('userLocation').value.trim();
+
+                // Filter mock trends based on genre and location
+                const trends = mockTrends.filter(trend => trend.genre === userGenre && trend.location === userLocation);
+
+                // Populate trend list
+                trendList.innerHTML = '';
+                trends.forEach(trend => {
+                    const listItem = `
+                        <li class="trend-item">
+                            <h3>${trend.trend}</h3>
+                            <p>Platform: ${trend.platform}</p>
+                        </li>
+                    `;
+                    trendList.innerHTML += listItem;
+                });
+
+                // Show relevant post suggestions based on genre
+                const suggestions = mockTemplates[userGenre] || ['No post templates available for this genre.'];
+                postTemplates.innerHTML = suggestions.map(suggestion => `<p>${suggestion}</p>`).join('');
+            });
+        });
+    </script>
+</body>
+</html>
