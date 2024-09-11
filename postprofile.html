@@ -30,18 +30,11 @@
         header {
             background-color: var(--primary-color);
             color: white;
-            text-align: center;
             padding: 20px 0;
+            position: relative;
         }
         h1, h2 {
             margin-bottom: 20px;
-        }
-        section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .cta-button {
             display: inline-block;
@@ -85,6 +78,24 @@
             margin-bottom: 10px;
             box-sizing: border-box; /* Ensure padding doesn't affect total width */
         }
+        /* Add a navigation bar on the top right */
+        .nav-bar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-bar a:hover {
+            background-color: #E91E63;
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -96,6 +107,9 @@
     <header>
         <h1>Welcome back, <span id="userName">User</span>!</h1>
         <p>Explore and create your genre!</p>
+        <div class="nav-bar">
+            <a href="viral-trend-finder.html">Viral Trend Finder</a> <!-- Link to Viral Trend Finder page -->
+        </div>
     </header>
 
     <div class="container">
