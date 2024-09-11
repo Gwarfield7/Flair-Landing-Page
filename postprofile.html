@@ -6,6 +6,8 @@
     <title>Flair - Hotspot List</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Awesomplete CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
     <style>
         :root {
             --primary-color: #6200EA;
@@ -56,34 +58,10 @@
         .cta-button:hover {
             background-color: #E91E63;
         }
-        .results {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            background-color: #f9f9f9;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background-color: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-        }
-        .results li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        /* Added style for the map container */
         #map {
             height: 400px;
             margin-top: 20px;
-            width: 100%; /* Ensure the map stretches fully */
+            width: 100%;
         }
         @media (max-width: 768px) {
             .container {
@@ -99,30 +77,24 @@
     </header>
 
     <div class="container">
-
         <!-- Find Your Hotspots -->
         <section id="hotspots">
             <h2>Find Your Hotspots</h2>
             <p>Where should you perform next? Find cities where your genre is trending.</p>
             <form id="hotspotsForm">
-                <label for="userGenre">Select your genre:</label>
-                <select id="userGenre" name="userGenre" required>
-                    <option value="">Select a genre</option>
-                    <option value="hiphop">Hip-Hop</option>
-                    <option value="rock">Rock</option>
-                    <option value="pop">Pop</option>
-                    <!-- Add more genres as needed -->
-                </select>
+                <label for="userGenre">Select or Type your genre:</label>
+                <input id="userGenre" name="userGenre" class="awesomplete" data-list="Hip-Hop, Rock, Pop, Jazz, Blues, Classical, EDM, Reggae, Country, Metal, R&B, Funk, Folk, Disco" required placeholder="Type your genre here">
                 <button type="submit" class="cta-button">Find Hotspots</button>
             </form>
             <!-- Map Container -->
             <div id="map"></div>
         </section>
-
     </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Awesomplete JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
 
     <!-- Map functionality -->
     <script>
