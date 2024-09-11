@@ -4,13 +4,24 @@ let map, markers = [];
 
 // Initialize the map when the page loads
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the map
-    map = L.map('map').setView([20, 0], 2); // Centered globally
+    // Initialize the map with fullscreen control
+    map = L.map('map', {
+        fullscreenControl: true // Add full-screen control
+    }).setView([20, 0], 2); // Center the map globally
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
+
+    // Fullscreen event listeners (optional)
+    map.on('enterFullscreen', function(){
+        console.log('Entered fullscreen');
+    });
+
+    map.on('exitFullscreen', function(){
+        console.log('Exited fullscreen');
+    });
 });
 
 // Function for Find Your Hotspots (leveraging sample data)
