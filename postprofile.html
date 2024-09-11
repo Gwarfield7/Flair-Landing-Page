@@ -61,6 +61,22 @@
             margin-top: 20px;
             width: 100%; /* Ensure the map stretches fully */
         }
+        .suggestion-box {
+            background-color: white;
+            border: 1px solid #ddd;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            z-index: 1000;
+            width: 100%;
+        }
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #F0F0F0;
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -81,7 +97,8 @@
             <p>Type in a genre to see if it exists, or create a new one!</p>
             <form id="genreForm">
                 <label for="userGenre">Enter your genre:</label>
-                <input id="userGenre" name="userGenre" required placeholder="Type your genre here">
+                <input id="userGenre" name="userGenre" required placeholder="Type your genre here" autocomplete="off">
+                <div id="genreSuggestions" class="suggestion-box"></div> <!-- Suggestion Box -->
                 <button type="submit" class="cta-button">Find Genre</button>
             </form>
             <div id="genreResult"></div>
@@ -90,19 +107,44 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/map.js"></script> <!-- Map functionality -->
 
-    <!-- Genre Searching and Creating -->
+    <!-- Autocomplete and Genre Searching/Creation Functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const genreForm = document.getElementById('genreForm');
             const genreResult = document.getElementById('genreResult');
+            const genreSuggestions = document.getElementById('genreSuggestions');
+            const userGenreInput = document.getElementById('userGenre');
 
-            // Mock database of genres (replace this with actual backend data later)
+            // Mock database of genres
             let genres = ["Hip-Hop", "Rock", "Pop", "Jazz", "Blues", "Classical", "EDM", "Reggae"];
 
-            genreForm.addEventListener('submit', function(e) {
+            // Autocomplete functionality for genre input
+            userGenreInput.addEventListener('input', function () {
+                const input = this.value.trim().toLowerCase();
+                genreSuggestions.innerHTML = ''; // Clear suggestions
+
+                if (input) {
+                    const filteredGenres = genres.filter(genre => genre.toLowerCase().startsWith(input));
+                    genreSuggestions.innerHTML = filteredGenres
+                        .map(genre => `<p class="suggestion-item">${genre}</p>`)
+                        .join('');
+
+                    // Add click event to each suggestion
+                    document.querySelectorAll('.suggestion-item').forEach(item => {
+                        item.addEventListener('click', function () {
+                            userGenreInput.value = this.textContent;
+                            genreSuggestions.innerHTML = ''; // Clear suggestions after selection
+                        });
+                    });
+                }
+            });
+
+            // Handle genre form submission
+            genreForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                const userGenre = document.getElementById('userGenre').value.trim();
+                const userGenre = userGenreInput.value.trim();
 
                 // Check if genre exists
                 if (genres.includes(userGenre)) {
@@ -113,7 +155,7 @@
                         <p>The genre <b>${userGenre}</b> does not exist. Would you like to create it?</p>
                         <button id="createGenreButton" class="cta-button">Create ${userGenre}</button>
                     `;
-                    document.getElementById('createGenreButton').addEventListener('click', function() {
+                    document.getElementById('createGenreButton').addEventListener('click', function () {
                         genres.push(userGenre);  // Add to the genre list (mock database)
                         genreResult.innerHTML = `<p>The genre <b>${userGenre}</b> has been created! Others can now find and join this genre.</p>`;
                     });
