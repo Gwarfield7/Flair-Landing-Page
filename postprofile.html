@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flair - Hotspot List</title>
+    <title>Flair - Genre Discovery</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <!-- Awesomplete CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
     <style>
         :root {
             --primary-color: #6200EA;
@@ -61,7 +59,7 @@
         #map {
             height: 400px;
             margin-top: 20px;
-            width: 100%;
+            width: 100%; /* Ensure the map stretches fully */
         }
         @media (max-width: 768px) {
             .container {
@@ -73,66 +71,53 @@
 <body>
     <header>
         <h1>Welcome back, <span id="userName">User</span>!</h1>
-        <p>Explore the cities where your genre is trending!</p>
+        <p>Explore and create your genre!</p>
     </header>
 
     <div class="container">
-        <!-- Find Your Hotspots -->
-        <section id="hotspots">
-            <h2>Find Your Hotspots</h2>
-            <p>Where should you perform next? Find cities where your genre is trending.</p>
-            <form id="hotspotsForm">
-                <label for="userGenre">Select or Type your genre:</label>
-                <input id="userGenre" name="userGenre" class="awesomplete" data-list="Hip-Hop, Rock, Pop, Jazz, Blues, Classical, EDM, Reggae, Country, Metal, R&B, Funk, Folk, Disco" required placeholder="Type your genre here">
-                <button type="submit" class="cta-button">Find Hotspots</button>
+        <!-- Find or Create Genre -->
+        <section id="genreSection">
+            <h2>Find Your Genre</h2>
+            <p>Type in a genre to see if it exists, or create a new one!</p>
+            <form id="genreForm">
+                <label for="userGenre">Enter your genre:</label>
+                <input id="userGenre" name="userGenre" required placeholder="Type your genre here">
+                <button type="submit" class="cta-button">Find Genre</button>
             </form>
-            <!-- Map Container -->
-            <div id="map"></div>
+            <div id="genreResult"></div>
         </section>
     </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <!-- Awesomplete JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
 
-    <!-- Map functionality -->
+    <!-- Genre Searching and Creating -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Initialize the map
-            let map = L.map('map').setView([20, 0], 2); // Center the map globally
+            const genreForm = document.getElementById('genreForm');
+            const genreResult = document.getElementById('genreResult');
 
-            // Add OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
+            // Mock database of genres (replace this with actual backend data later)
+            let genres = ["Hip-Hop", "Rock", "Pop", "Jazz", "Blues", "Classical", "EDM", "Reggae"];
 
-            // Handle form submission
-            document.getElementById('hotspotsForm').addEventListener('submit', function(e) {
+            genreForm.addEventListener('submit', function(e) {
                 e.preventDefault();
+                const userGenre = document.getElementById('userGenre').value.trim();
 
-                // Example hotspot data (replace this with actual data from your API)
-                const genre = document.getElementById('userGenre').value;
-                const hotspots = [
-                    { city: 'New York', coords: [40.7128, -74.0060] },
-                    { city: 'Los Angeles', coords: [34.0522, -118.2437] },
-                    { city: 'London', coords: [51.5074, -0.1278] },
-                    { city: 'Paris', coords: [48.8566, 2.3522] }
-                ];
-
-                // Clear existing markers
-                map.eachLayer(function (layer) {
-                    if (layer instanceof L.Marker) {
-                        map.removeLayer(layer);
-                    }
-                });
-
-                // Add new markers based on selected genre
-                hotspots.forEach(hotspot => {
-                    L.marker(hotspot.coords)
-                        .addTo(map)
-                        .bindPopup(`<b>${hotspot.city}</b><br>Trending Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}`);
-                });
+                // Check if genre exists
+                if (genres.includes(userGenre)) {
+                    genreResult.innerHTML = `<p>The genre <b>${userGenre}</b> already exists. You can connect with others in this genre!</p>`;
+                } else {
+                    // Option to create the genre
+                    genreResult.innerHTML = `
+                        <p>The genre <b>${userGenre}</b> does not exist. Would you like to create it?</p>
+                        <button id="createGenreButton" class="cta-button">Create ${userGenre}</button>
+                    `;
+                    document.getElementById('createGenreButton').addEventListener('click', function() {
+                        genres.push(userGenre);  // Add to the genre list (mock database)
+                        genreResult.innerHTML = `<p>The genre <b>${userGenre}</b> has been created! Others can now find and join this genre.</p>`;
+                    });
+                }
             });
         });
     </script>
