@@ -66,7 +66,7 @@
         .input-field button {
             padding: 15px 30px;
             background-color: var(--accent-color);
-            color: var (--text-color);
+            color: var(--text-color);
             font-size: 1.2em;
             border: none;
             border-radius: 5px;
@@ -74,24 +74,6 @@
             transition: background-color 0.3s;
         }
         .input-field button:hover {
-            background-color: #E91E63;
-        }
-        .cta {
-            text-align: center;
-            padding: 100px 0;
-        }
-        .button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            padding: 15px 30px;
-            font-size: 1.2em;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-        .button:hover {
             background-color: #E91E63;
         }
         footer {
@@ -127,12 +109,6 @@
             </div>
         </section>
 
-        <!-- Call to Action -->
-        <section id="cta" class="cta">
-            <h2>Ready to Take Your Career to the Next Level?</h2>
-            <button class="button" onclick="redirectToRegistration()">Start Your Journey</button>
-        </section>
-
         <footer>
             <a href="#">Terms & Conditions</a>
             <a href="#">Privacy Policy</a>
@@ -141,19 +117,30 @@
     </div>
 
     <script>
+        // Placeholder genres list (replace with API call or DB lookup)
+        const genres = ["Hip-Hop", "Pop", "Rock", "Jazz", "Country"];
+
         function findTrends() {
-            const genre = document.getElementById('genre-input').value;
+            const genre = document.getElementById('genre-input').value.trim();
             if (genre) {
-                // Simulate real-time data loading for trends (could use APIs here)
-                alert(`Searching trends for ${genre}...`);
-                // Redirect to the dashboard or results page with loaded trends
+                if (!genres.includes(genre)) {
+                    const createNewGenre = confirm(`${genre} is not in our system. Would you like to create it?`);
+                    if (createNewGenre) {
+                        genres.push(genre);  // Add new genre to the list (or your DB)
+                        alert(`${genre} has been created! Please sign up to continue.`);
+                        redirectToSignUp();
+                    }
+                } else {
+                    alert(`Genre ${genre} exists! Please sign up or log in to continue.`);
+                    redirectToSignUp();
+                }
             } else {
                 alert('Please enter a genre.');
             }
         }
 
-        function redirectToRegistration() {
-            window.location.href = 'registration.html'; // Change this to the actual path of your registration page
+        function redirectToSignUp() {
+            window.location.href = 'signup.html';  // Change this to the path of your sign-up/registration page
         }
     </script>
 </body>
