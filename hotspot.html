@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotspot List - Flair</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         :root {
             --primary-color: #6200EA;
@@ -85,9 +86,7 @@
     <h1>Hotspot List</h1>
 
     <!-- Map Displaying the Hotspots -->
-    <div class="map-container" id="map">
-        <!-- Map will be embedded here using Leaflet.js or similar -->
-    </div>
+    <div class="map-container" id="map"></div>
 
     <div class="filter-container">
         <div>
@@ -115,6 +114,11 @@
         <!-- Trending data will load here when a city is clicked -->
     </div>
 </div>
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Load the map.js file -->
+<script src="map.js"></script>
 
 <script>
     // Function to toggle custom genre input field
