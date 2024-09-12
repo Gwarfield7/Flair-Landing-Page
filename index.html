@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flair - Data-Driven Decisions for Hip-Hop Artists</title>
+    <title>Flair - Discover Viral Trends, Playlists, and Hotspots</title>
     <style>
         :root {
             --primary-color: #6200EA;
@@ -52,6 +52,30 @@
             max-width: 600px;
             margin: 0 auto 30px;
         }
+        .input-field {
+            margin: 30px 0;
+        }
+        .input-field input {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        .input-field button {
+            padding: 15px 30px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .input-field button:hover {
+            background-color: #E91E63;
+        }
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -68,23 +92,17 @@
             font-size: 1.5em;
             margin-bottom: 15px;
         }
-        .benefits {
+        .social-proof {
             background-color: var(--secondary-color);
-            padding: 80px 0;
-        }
-        .benefits h2 {
+            padding: 60px 0;
             text-align: center;
+        }
+        .social-proof h2 {
             font-size: 2.5em;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
-        .benefit {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .benefit-icon {
-            font-size: 2em;
-            margin-right: 20px;
+        .testimonial {
+            margin-bottom: 20px;
         }
         .cta {
             text-align: center;
@@ -104,6 +122,16 @@
         .button:hover {
             background-color: #E91E63;
         }
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            background-color: var(--secondary-color);
+        }
+        footer a {
+            color: var(--text-color);
+            margin: 0 15px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -112,85 +140,80 @@
             <div class="logo">Flair</div>
             <nav>
                 <a href="#features">Features</a>
-                <a href="#benefits">Benefits</a>
+                <a href="#social-proof">Success Stories</a>
                 <a href="#cta">Get Started</a>
             </nav>
         </header>
 
         <section class="hero">
-            <h1>Elevate Your Music Career</h1>
-            <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
-            <button class="button" onclick="window.location.href='registration.html'"
-()">Start Your Journey</button>
+            <h1>Unlock Viral Music Trends and Skyrocket Your Career</h1>
+            <p>Discover trending hashtags, viral challenges, and top playlists curated just for you.</p>
+            
+            <!-- Interactive Genre Input Field -->
+            <div class="input-field">
+                <input type="text" placeholder="Enter your genre (e.g., Hip-Hop, Pop)" id="genre-input">
+                <button onclick="findTrends()">Find Trends</button>
+            </div>
         </section>
 
         <section id="features" class="features">
             <div class="feature">
-                <h3>City Insights</h3>
-                <p>Compare cities based on cost of living, safety, and music industry presence.</p>
+                <h3>Viral Trend Finder</h3>
+                <p>Get real-time insights on trends you can use to engage your fans.</p>
+                <a href="#">Learn More</a>
             </div>
             <div class="feature">
-                <h3>Genre Popularity</h3>
-                <p>Discover where your genre is trending and where your fans are most active.</p>
+                <h3>Playlist Identifier</h3>
+                <p>Find curated playlists to boost your streams and get noticed.</p>
+                <a href="#">Learn More</a>
             </div>
             <div class="feature">
-                <h3>Career Opportunities</h3>
-                <p>Access job listings, music events, and networking opportunities.</p>
-            </div>
-            <div class="feature">
-                <h3>Audience Analytics</h3>
-                <p>Gain insights into your fanbase, including demographics and engagement metrics.</p>
-            </div>
-            <div class="feature">
-                <h3>Event Listings</h3>
-                <p>Find local events where you can perform or network to boost your career.</p>
+                <h3>Hotspot List</h3>
+                <p>See where your genre is trending, and target your next performance or promotion.</p>
+                <a href="#">Learn More</a>
             </div>
         </section>
 
-        <section id="benefits" class="benefits">
-            <h2>Why Choose Flair?</h2>
-            <div class="benefit">
-                <div class="benefit-icon">📊</div>
-                <div>
-                    <h3>Actionable Insights</h3>
-                    <p>Make informed decisions about where to live, perform, or tour based on real data.</p>
-                </div>
+        <!-- Social Proof Section -->
+        <section id="social-proof" class="social-proof">
+            <h2>Success Stories</h2>
+            <div class="testimonial">
+                <p>"Flair helped me land on two major playlists and gain 50,000 new listeners in one month!" - Artist X</p>
             </div>
-            <div class="benefit">
-                <div class="benefit-icon">🎯</div>
-                <div>
-                    <h3>Optimize Marketing</h3>
-                    <p>Discover where your music is most popular and focus your efforts for maximum impact.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">📈</div>
-                <div>
-                    <h3>Grow Your Career</h3>
-                    <p>Find opportunities, connect with fans, and understand your audience to accelerate your success.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">🔔</div>
-                <div>
-                    <h3>Stay Informed</h3>
-                    <p>Access real-time event data to find performance opportunities in key cities.</p>
-                </div>
+            <div class="testimonial">
+                <p>"The Hotspot List showed me where my fanbase was growing. I planned a show, and it sold out!" - Artist Y</p>
             </div>
         </section>
 
+        <!-- Call to Action -->
         <section id="cta" class="cta">
             <h2>Ready to Take Your Career to the Next Level?</h2>
-            <button class="button" onclick="redirectToRegistration()">Find Your Path</button>
+            <button class="button" onclick="redirectToRegistration()">Start Your Journey</button>
         </section>
+
+        <footer>
+            <a href="#">Features</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+            <a href="#">FAQs</a>
+        </footer>
     </div>
 
     <script>
+        function findTrends() {
+            const genre = document.getElementById('genre-input').value;
+            if (genre) {
+                // Simulate real-time data loading for trends (could use APIs here)
+                alert(`Searching trends for ${genre}...`);
+                // Redirect to the dashboard or results page with loaded trends
+            } else {
+                alert('Please enter a genre.');
+            }
+        }
+
         function redirectToRegistration() {
             window.location.href = 'registration.html'; // Change this to the actual path of your registration page
         }
     </script>
 </body>
 </html>
-
-
