@@ -61,9 +61,6 @@
         .button:hover {
             background-color: #E91E63;
         }
-        .form-group select {
-            width: 100%;
-        }
     </style>
 </head>
 <body>
@@ -92,7 +89,7 @@
             </div>
 
             <div class="form-group">
-                <label for="location">Location (Please format as City, State) (optional)</label>
+                <label for="location">Location (optional)</label>
                 <input type="text" id="location" name="location" placeholder="Enter your city or region">
             </div>
 
@@ -129,23 +126,20 @@
             }
         });
 
+        // Handle form submission
         document.getElementById('artist-profile-form').addEventListener('submit', function(event) {
             event.preventDefault();
+
             const formData = new FormData(event.target);
+            const artistName = formData.get('artist-name');
+            const genre = formData.get('genre');
 
-            const profileData = {
-                artistName: formData.get('artist-name'),
-                genre: formData.get('genre'),
-                careerStage: formData.get('career-stage'),
-                location: formData.get('location'),
-                socialLinks: formData.get('social-links'),
-                goals: formData.get('goals'),
-            };
+            // Save artist name and genre to localStorage
+            localStorage.setItem('artistName', artistName);
+            localStorage.setItem('userGenre', genre);
 
-            // Log the profile data for now
-            console.log('Profile Data:', profileData);
-
-            alert('Profile submitted successfully!');
+            // Redirect to the dashboard
+            window.location.href = 'dashboard.html';
         });
     </script>
 
