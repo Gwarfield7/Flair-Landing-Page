@@ -3,200 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flair - Genre Discovery</title>
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>Flair - Complete Your Profile</title>
     <style>
         :root {
             --primary-color: #6200EA;
             --secondary-color: #7C4DFF;
-            --text-color: #333333;
-            --background-color: #F5F5F5;
+            --text-color: #FFFFFF;
             --accent-color: #FF4081;
         }
         body {
             font-family: 'Roboto', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
             margin: 0;
             padding: 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px 0;
-            position: relative;
-        }
-        h1, h2 {
+        h1 {
+            text-align: center;
             margin-bottom: 20px;
         }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            cursor: pointer;
+        .form-group {
+            margin-bottom: 20px;
         }
-        .cta-button:hover {
-            background-color: #E91E63;
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
-        #map {
-            height: 400px;
-            margin-top: 20px;
-            width: 100%; /* Ensure the map stretches fully */
-        }
-        .suggestion-box {
-            background-color: white;
-            border: 1px solid #ddd;
-            max-height: 150px;
-            overflow-y: auto;
-            position: absolute;
-            z-index: 1000;
-            width: 100%;
-        }
-        .suggestion-item {
-            padding: 8px;
-            cursor: pointer;
-        }
-        .suggestion-item:hover {
-            background-color: #F0F0F0;
-        }
-        input#userGenre {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
+            font-size: 1.2em;
             border-radius: 5px;
-            margin-bottom: 10px;
-            box-sizing: border-box; /* Ensure padding doesn't affect total width */
+            border: 1px solid #ccc;
         }
-        /* Add a navigation bar on the top right */
-        .nav-bar {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
+        .button {
+            display: inline-block;
             background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 15px 30px;
+            font-size: 1.2em;
+            text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
-        .nav-bar a:hover {
+        .button:hover {
             background-color: #E91E63;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
+        .form-group select {
+            width: 100%;
+        }
+        .optional-section {
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome back, <span id="userName">User</span>!</h1>
-        <p>Explore and create your genre!</p>
-        <div class="nav-bar">
-            <a href="viral-trend-finder.html">Viral Trend Finder</a> <!-- Link to Viral Trend Finder page -->
-        </div>
-    </header>
 
     <div class="container">
-        <!-- Find or Create Genre -->
-        <section id="genreSection">
-            <h2>Find your Hotspot!</h2>
-            <p>See where your genre is the hottest and if you can't find yours, create a new one!</p>
-            <form id="genreForm">
-                <label for="userGenre">Enter your genre:</label>
-                <input id="userGenre" name="userGenre" required placeholder="Type your genre here" autocomplete="off">
-                <div id="genreSuggestions" class="suggestion-box"></div> <!-- Suggestion Box -->
-                <button type="submit" class="cta-button">Find Genre</button>
-            </form>
-            <div id="genreResult"></div>
-        </section>
+        <h1>Complete Your Profile</h1>
+        <form id="artist-profile-form">
+            <div class="form-group">
+                <label for="artist-name">Artist Name</label>
+                <input type="text" id="artist-name" name="artist-name" placeholder="Enter your artist name" required>
+            </div>
 
-        <!-- Map Section -->
-        <section>
-            <h2>Hotspot Map</h2>
-            <div id="map"></div> <!-- Map container -->
-        </section>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" placeholder="Enter your genre (e.g., Hip-Hop, Pop)" required>
+            </div>
+
+            <div class="form-group">
+                <label for="career-stage">Career Stage</label>
+                <select id="career-stage" name="career-stage" required>
+                    <option value="beginner">Beginner</option>
+                    <option value="emerging">Emerging</option>
+                    <option value="established">Established</option>
+                    <option value="professional">Professional</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location (optional)</label>
+                <input type="text" id="location" name="location" placeholder="Enter your city or region">
+            </div>
+
+            <div class="form-group">
+                <label for="social-links">Social Media Links (optional)</label>
+                <input type="text" id="social-links" name="social-links" placeholder="Instagram, TikTok, etc.">
+            </div>
+
+            <div class="form-group">
+                <label for="goals">What is your main goal in the next 6 months?</label>
+                <select id="goals" name="goals" required>
+                    <option value="grow-fanbase">Grow my fanbase</option>
+                    <option value="land-playlists">Land on a major playlist</option>
+                    <option value="increase-social-exposure">Increase social media exposure</option>
+                    <option value="book-gigs">Book more gigs or performances</option>
+                    <option value="monetize-music">Monetize my music</option>
+                    <option value="collaborate">Collaborate with other artists</option>
+                </select>
+            </div>
+
+            <!-- Submit button -->
+            <div class="form-group">
+                <button type="submit" class="button">Submit Profile</button>
+            </div>
+        </form>
     </div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <!-- Autocomplete and Genre Searching/Creation Functionality -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const genreForm = document.getElementById('genreForm');
-            const genreResult = document.getElementById('genreResult');
-            const genreSuggestions = document.getElementById('genreSuggestions');
-            const userGenreInput = document.getElementById('userGenre');
+        // Function to get genre from localStorage or URL and prepopulate it
+        function prepopulateGenre() {
+            const genreInput = document.getElementById('genre');
+            const storedGenre = localStorage.getItem('userGenre');
+            if (storedGenre) {
+                genreInput.value = storedGenre;
+            }
+        }
 
-            // Mock database of genres
-            let genres = ["Hip-Hop", "Rock", "Pop", "Jazz", "Blues", "Classical", "EDM", "Reggae"];
+        // Event listener to prepopulate genre field on page load
+        document.addEventListener("DOMContentLoaded", prepopulateGenre);
 
-            // Autocomplete functionality for genre input
-            userGenreInput.addEventListener('input', function () {
-                const input = this.value.trim().toLowerCase();
-                genreSuggestions.innerHTML = ''; // Clear suggestions
-
-                if (input) {
-                    const filteredGenres = genres.filter(genre => genre.toLowerCase().startsWith(input));
-                    genreSuggestions.innerHTML = filteredGenres
-                        .map(genre => `<p class="suggestion-item">${genre}</p>`)
-                        .join('');
-
-                    // Add click event to each suggestion
-                    document.querySelectorAll('.suggestion-item').forEach(item => {
-                        item.addEventListener('click', function () {
-                            userGenreInput.value = this.textContent;
-                            genreSuggestions.innerHTML = ''; // Clear suggestions after selection
-                        });
-                    });
-                }
-            });
-
-            // Handle genre form submission
-            genreForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const userGenre = userGenreInput.value.trim();
-
-                // Check if genre exists
-                if (genres.includes(userGenre)) {
-                    genreResult.innerHTML = `<p>The genre <b>${userGenre}</b> already exists. You can connect with others in this genre!</p>`;
-                } else {
-                    // Option to create the genre
-                    genreResult.innerHTML = `
-                        <p>The genre <b>${userGenre}</b> does not exist. Would you like to create it?</p>
-                        <button id="createGenreButton" class="cta-button">Create ${userGenre}</button>
-                    `;
-                    document.getElementById('createGenreButton').addEventListener('click', function () {
-                        genres.push(userGenre);  // Add to the genre list (mock database)
-                        genreResult.innerHTML = `<p>The genre <b>${userGenre}</b> has been created! Others can now find and join this genre.</p>`;
-                    });
-                }
-            });
-
-            // Initialize the map when the page loads
-            let map = L.map('map').setView([20, 0], 2); // Center the map globally
-
-            // Add OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
+        // Placeholder for form submission logic
+        document.getElementById('artist-profile-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const profileData = {
+                artistName: formData.get('artist-name'),
+                genre: formData.get('genre'),
+                careerStage: formData.get('career-stage'),
+                location: formData.get('location'),
+                socialLinks: formData.get('social-links'),
+                goals: formData.get('goals'),
+            };
+            console.log('Profile Data:', profileData);
+            alert('Profile submitted successfully!');
+            // Add fetch request here to submit data to backend or Google Sheets
         });
     </script>
+
 </body>
 </html>
