@@ -73,7 +73,7 @@
 
     <div class="container">
         <h1>Complete Your Profile</h1>
-        <form id="artist-profile-form">
+        <form id="artist-profile-form" action="https://formspree.io/f/your-form-id" method="POST">
             <div class="form-group">
                 <label for="artist-name">Artist Name</label>
                 <input type="text" id="artist-name" name="artist-name" placeholder="Enter your artist name" required>
@@ -116,7 +116,6 @@
                 </select>
             </div>
 
-            <!-- Submit button -->
             <div class="form-group">
                 <button type="submit" class="button">Submit Profile</button>
             </div>
@@ -124,7 +123,6 @@
     </div>
 
     <script>
-        // Function to get genre from localStorage or URL and prepopulate it
         function prepopulateGenre() {
             const genreInput = document.getElementById('genre');
             const storedGenre = localStorage.getItem('userGenre');
@@ -133,10 +131,8 @@
             }
         }
 
-        // Event listener to prepopulate genre field on page load
         document.addEventListener("DOMContentLoaded", prepopulateGenre);
 
-        // Placeholder for form submission logic
         document.getElementById('artist-profile-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
@@ -150,7 +146,6 @@
             };
             console.log('Profile Data:', profileData);
             alert('Profile submitted successfully!');
-            // Add fetch request here to submit data to backend or Google Sheets
         });
     </script>
 
