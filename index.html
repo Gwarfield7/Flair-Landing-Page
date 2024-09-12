@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flair - Data-Driven Decisions for Hip-Hop Artists</title>
+    <title>Flair - Data-Driven Decisions for Musicians</title>
     <style>
         :root {
             --primary-color: #6200EA;
@@ -104,6 +104,15 @@
         .button:hover {
             background-color: #E91E63;
         }
+        .hotspot-list {
+            padding: 50px 0;
+        }
+        .hotspot {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -118,33 +127,38 @@
         </header>
 
         <section class="hero">
-            <h1>Elevate Your Hip-Hop Career</h1>
-            <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
-            <button class="button" onclick="window.location.href='registration.html'"
-()">Start Your Journey</button>
+            <h1>🎶 Elevate Your Music Career</h1>
+            <p>📊 Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
+            <button class="button" onclick="window.location.href='registration.html'">🚀 Start Your Journey</button>
         </section>
 
         <section id="features" class="features">
             <div class="feature">
-                <h3>City Insights</h3>
+                <h3>🌆 City Insights</h3>
                 <p>Compare cities based on cost of living, safety, and music industry presence.</p>
             </div>
             <div class="feature">
-                <h3>Genre Popularity</h3>
+                <h3>🎧 Genre Popularity</h3>
                 <p>Discover where your genre is trending and where your fans are most active.</p>
             </div>
             <div class="feature">
-                <h3>Career Opportunities</h3>
+                <h3>💼 Career Opportunities</h3>
                 <p>Access job listings, music events, and networking opportunities.</p>
             </div>
             <div class="feature">
-                <h3>Audience Analytics</h3>
+                <h3>📊 Audience Analytics</h3>
                 <p>Gain insights into your fanbase, including demographics and engagement metrics.</p>
             </div>
             <div class="feature">
-                <h3>Event Listings</h3>
+                <h3>🎤 Event Listings</h3>
                 <p>Find local events where you can perform or network to boost your career.</p>
             </div>
+        </section>
+
+        <!-- Hotspot List Feature -->
+        <section class="hotspot-list" id="hotspot-list">
+            <h2>🌍 Discover Hotspots for Your Genre</h2>
+            <div id="hotspots"></div>
         </section>
 
         <section id="benefits" class="benefits">
@@ -189,6 +203,30 @@
         function redirectToRegistration() {
             window.location.href = 'registration.html'; // Change this to the actual path of your registration page
         }
+
+        // Mockup Data for Hotspot List (Can be replaced with API data)
+        const hotspotData = [
+            { city: 'Los Angeles', genre: 'Hip-Hop', activity: '🔥 Hot' },
+            { city: 'New York', genre: 'Indie', activity: '📈 Rising' },
+            { city: 'Chicago', genre: 'Electronic', activity: '🚀 Trending' },
+            { city: 'London', genre: 'Rock', activity: '🔥 Hot' }
+        ];
+
+        function loadHotspots() {
+            const hotspotsContainer = document.getElementById('hotspots');
+            hotspotData.forEach(hotspot => {
+                const hotspotDiv = document.createElement('div');
+                hotspotDiv.className = 'hotspot';
+                hotspotDiv.innerHTML = `
+                    <h3>${hotspot.city} - ${hotspot.genre}</h3>
+                    <p>Activity: ${hotspot.activity}</p>
+                `;
+                hotspotsContainer.appendChild(hotspotDiv);
+            });
+        }
+
+        // Load Hotspots on Page Load
+        window.onload = loadHotspots;
     </script>
 </body>
 </html>
