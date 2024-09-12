@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotspot List - Flair</title>
+    <style>
+        :root {
+            --primary-color: #6200EA;
+            --secondary-color: #7C4DFF;
+            --text-color: #FFFFFF;
+            --accent-color: #FF4081;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .map-container {
+            width: 100%;
+            height: 500px;
+            margin-bottom: 20px;
+        }
+        .city-card {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .city-card h3 {
+            margin-bottom: 10px;
+        }
+        .city-card p {
+            margin-bottom: 10px;
+        }
+        .button {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #E91E63;
+        }
+        .city-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filter-container select {
+            padding: 10px;
+            font-size: 1.1em;
+        }
+        .trending-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hotspot List</h1>
+
+    <!-- Map Displaying the Hotspots -->
+    <div class="map-container" id="map">
+        <!-- Map will be embedded here using Leaflet.js or similar -->
+    </div>
+
+    <div class="filter-container">
+        <div>
+            <strong>Genre:</strong>
+            <select id="genre-select" onchange="checkForCustomGenre()">
+                <option value="hip-hop">Hip-Hop</option>
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="create-new">Create New Genre</option>
+            </select>
+            <input type="text" id="custom-genre" name="custom-genre" placeholder="Enter your custom genre" style="display:none;" />
+        </div>
+        <div>
+            <strong>Timeframe:</strong>
+            <select id="timeframe-select">
+                <option value="week">Past Week</option>
+                <option value="month">Past Month</option>
+                <option value="year">Past Year</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Trending songs and artists data for selected city -->
+    <div class="trending-container" id="trending-data">
+        <!-- Trending data will load here when a city is clicked -->
+    </div>
+</div>
+
+<script>
+    // Function to toggle custom genre input field
+    function checkForCustomGenre() {
+        const genreSelect = document.getElementById('genre-select').value;
+        const customGenreInput = document.getElementById('custom-genre');
+        if (genreSelect === 'create-new') {
+            customGenreInput.style.display = 'block';
+        } else {
+            customGenreInput.style.display = 'none';
+        }
+    }
+
+    // Sample data for hottest songs and artists (replace with real API data)
+    const trendingData = {
+        "Los Angeles": {
+            songs: [
+                { title: "Song 1", artist: "Artist 1", streams: "5M+", link: "#"},
+                { title: "Song 2", artist: "Artist 2", streams: "3M+", link: "#"}
+            ],
+            topArtists: [
+                { name: "Artist 1", genre: "Hip-Hop", link: "#"},
+                { name: "Artist 3", genre: "Pop", link: "#"}
+            ]
+        },
+        "New York": {
+            songs: [
+                { title: "Song A", artist: "Artist A", streams: "2M+", link: "#"},
+                { title: "Song B", artist: "Artist B", streams: "1.5M+", link: "#"}
+            ],
+            topArtists: [
+                { name: "Artist A", genre: "Rock", link: "#"},
+                { name: "Artist D", genre: "Jazz", link: "#"}
+            ]
+        }
+    };
+
+    // Function to load trending data based on selected city
+    function loadTrendingData(city) {
+        const cityData = trendingData[city];
+        if (cityData) {
+            let trendingHtml = `<h3>Top Songs in ${city}</h3><ul>`;
+            cityData.songs.forEach(song => {
+                trendingHtml += `<li>${song.title} by ${song.artist} - ${song.streams} streams <a href="${song.link}">Listen</a></li>`;
+            });
+            trendingHtml += `</ul><h3>Top Artists in ${city}</h3><ul>`;
+            cityData.topArtists.forEach(artist => {
+                trendingHtml += `<li>${artist.name} (${artist.genre}) <a href="${artist.link}">View Profile</a></li>`;
+            });
+            trendingHtml += `</ul>`;
+            
+            document.getElementById('trending-data').innerHTML = trendingHtml;
+        } else {
+            document.getElementById('trending-data').innerHTML = `<p>No trending data available for ${city}.</p>`;
+        }
+    }
+
+    // Example call to load data for "Los Angeles" (replace with real map interaction)
+    loadTrendingData('Los Angeles');
+</script>
+
+</body>
+</html>
