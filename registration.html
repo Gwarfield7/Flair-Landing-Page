@@ -17,44 +17,43 @@
             padding: 0;
             background-color: var(--primary-color);
             color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            line-height: 1.6;
         }
         .container {
-            max-width: 400px;
-            background-color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-            color: black;
-        }
-        h2 {
             text-align: center;
-            color: var(--primary-color);
         }
-        label {
-            display: block;
-            margin-bottom: 8px;
+        .logo {
+            font-size: 2.5em;
             font-weight: bold;
+            margin-bottom: 40px;
         }
-        input {
-            width: 100%;
-            padding: 10px;
+        h1 {
+            font-size: 2em;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .form-group input {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
             border-radius: 5px;
-            font-size: 16px;
+            width: 100%;
         }
         .button {
-            display: block;
-            width: 100%;
             background-color: var(--accent-color);
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            font-size: 18px;
+            color: var(--text-color);
+            padding: 15px 30px;
+            font-size: 1.2em;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -63,32 +62,78 @@
         .button:hover {
             background-color: #E91E63;
         }
+        .google-auth {
+            margin-top: 20px;
+            font-size: 1.2em;
+            background-color: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .google-auth img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .google-auth:hover {
+            background-color: #f0f0f0;
+        }
+        footer {
+            margin-top: 50px;
+            color: #ccc;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h2>Create Your Account</h2>
-        <form onsubmit="return redirectToProfile()">
-            <!-- Email Information -->
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <div class="logo">Flair</div>
 
-            <!-- Password Information -->
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Create a password" required>
+        <h1>Create Your Account</h1>
 
-            <button type="submit" class="button">Create Account</button>
+        <!-- Google Authentication Button -->
+        <div class="google-auth" onclick="googleSignIn()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
+            Sign up with Google
+        </div>
+
+        <p>or</p>
+
+        <!-- Traditional Sign-Up Form -->
+        <form action="your-backend-registration-handler" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Your Genre</label>
+                <input type="text" id="genre" name="genre" placeholder="Enter your genre (e.g., Hip-Hop, Pop)" required>
+            </div>
+
+            <button type="submit" class="button">Sign Up</button>
         </form>
+
+        <footer>
+            <p>Already have an account? <a href="login.html" style="color: #fff;">Log in</a></p>
+            <p>By signing up, you agree to our <a href="#" style="color: #fff;">Terms & Conditions</a> and <a href="#" style="color: #fff;">Privacy Policy</a>.</p>
+        </footer>
     </div>
 
     <script>
-        function redirectToProfile() {
-            // Simulate successful account creation and redirect to profile setup page
-            window.location.href = 'profile.html';  // Redirect to profile setup page
-            return false;  // Prevent form submission
+        // Placeholder function for Google Sign-In (implement OAuth with your backend)
+        function googleSignIn() {
+            alert("Google Sign-In integration goes here!");
+            // Add your backend Google OAuth2 integration here.
         }
     </script>
-
 </body>
 </html>
