@@ -17,24 +17,16 @@
             padding: 0;
             background-color: var(--primary-color);
             color: var(--text-color);
+            line-height: 1.6;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px;
+            text-align: center;
         }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        .logo {
+        h1 {
             font-size: 2.5em;
-            font-weight: bold;
-        }
-        .welcome {
-            font-size: 2em;
             margin-bottom: 20px;
         }
         .card {
@@ -42,80 +34,53 @@
             color: #333;
             padding: 20px;
             border-radius: 10px;
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
         .card h3 {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .button {
             background-color: var(--accent-color);
-            color: var(--text-color);
+            color: #fff;
             padding: 10px 20px;
-            font-size: 1.2em;
-            text-decoration: none;
+            border: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
-            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
         }
         .button:hover {
             background-color: #E91E63;
         }
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .logout {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <header>
-            <div class="logo">Flair</div>
-            <nav>
-                <a href="#" style="color: #fff; margin-left: 20px;">Profile</a>
-                <a href="#" style="color: #fff; margin-left: 20px;">Log Out</a>
-            </nav>
-        </header>
-
-        <section class="dashboard">
-            <div class="welcome">
-                Welcome back, <span id="artist-name">Artist</span>!
-            </div>
-
-            <div class="card-container">
-                <div class="card">
-                    <h3>Viral Trend Finder</h3>
-                    <p>Discover real-time trends and challenges to engage your audience.</p>
-                    <a href="viral-trend-finder.html" class="button">Find Trends</a>
-                </div>
-
-                <div class="card">
-                    <h3>Playlist Identifier</h3>
-                    <p>Find playlists that match your genre and get more streams.</p>
-                    <a href="playlist-identifier.html" class="button">Find Playlists</a>
-                </div>
-
-                <div class="card">
-                    <h3>Hotspot List</h3>
-                    <p>See where your genre is trending and plan your next performance.</p>
-                    <a href="hotspot-list.html" class="button">View Hotspots</a>
-                </div>
-            </div>
-        </section>
+        <h1>Welcome back, [Username]!</h1>
+        <div class="card">
+            <h3>Viral Trend Finder</h3>
+            <p>Discover real-time trends and challenges to engage your audience.</p>
+            <a href="viral-trend-finder.html" class="button">Find Trends</a>
+        </div>
+        <div class="card">
+            <h3>Playlist Identifier</h3>
+            <p>Find playlists that match your genre and get more streams.</p>
+            <a href="playlist-identifier.html" class="button">Find Playlists</a>
+        </div>
+        <div class="card">
+            <h3>Hotspot List</h3>
+            <p>See where your genre is trending and plan your next performance.</p>
+            <a href="hotspot.html" class="button">View Hotspots</a> <!-- Linking to Hotspot page -->
+        </div>
+        <div class="logout">
+            <a href="profile.html" class="button">Profile</a>
+            <a href="logout.html" class="button">Log Out</a>
+        </div>
     </div>
-
-    <script>
-        // Prepopulate the artist name from localStorage (if available)
-        document.addEventListener('DOMContentLoaded', function() {
-            const storedArtistName = localStorage.getItem('artistName');
-            const artistNameElement = document.getElementById('artist-name');
-            if (storedArtistName) {
-                artistNameElement.textContent = storedArtistName;
-            }
-        });
-    </script>
-
 </body>
 </html>
