@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Trend Finder - Flair</title>
+    <style>
+        :root {
+            --primary-color: #6200EA;
+            --secondary-color: #7C4DFF;
+            --text-color: #FFFFFF;
+            --accent-color: #FF4081;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .trend-card {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .trend-card h3 {
+            margin-bottom: 10px;
+        }
+        .trend-card p {
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #E91E63;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filter-container select {
+            padding: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container">
+    <h1>Viral Trend Finder</h1>
+
+    <div class="filter-container">
+        <div>
+            <strong>Genre:</strong>
+            <select id="genre-select">
+                <!-- Auto-populated based on user's genre -->
+                <option value="hip-hop">Hip-Hop</option>
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="jazz">Jazz</option>
+            </select>
+        </div>
+        <div>
+            <strong>Filter by Platform:</strong>
+            <select id="platform-filter">
+                <option value="all">All Platforms</option>
+                <option value="tiktok">TikTok</option>
+                <option value="instagram">Instagram</option>
+                <option value="twitter">Twitter</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="trend-list">
+        <!-- This will be dynamically populated -->
+    </div>
+</div>
+
+<script>
+    // Sample trends data (you will replace this with real API data)
+    const trends = [
+        {
+            genre: 'hip-hop',
+            platform: 'tiktok',
+            hashtag: '#ViralRapChallenge',
+            description: 'Create a 30-second rap video with this beat and post it using #ViralRapChallenge.',
+            exampleLink: 'https://example.com/viralrapchallenge'
+        },
+        {
+            genre: 'pop',
+            platform: 'instagram',
+            hashtag: '#DancePopHit',
+            description: 'Join the latest dance challenge by creating a reel using this hit pop song.',
+            exampleLink: 'https://example.com/dancepophit'
+        },
+        {
+            genre: 'rock',
+            platform: 'twitter',
+            hashtag: '#RockOutLoud',
+            description: 'Tweet your best guitar riff using #RockOutLoud to gain more followers!',
+            exampleLink: 'https://example.com/rockoutloud'
+        }
+    ];
+
+    // Function to load trends based on selected genre and platform
+    function loadTrends() {
+        const genreSelect = document.getElementById('genre-select').value;
+        const platformFilter = document.getElementById('platform-filter').value;
+
+        const trendList = document.getElementById('trend-list');
+        trendList.innerHTML = '';  // Clear the existing trends
+
+        const filteredTrends = trends.filter(trend => 
+            trend.genre === genreSelect && 
+            (platformFilter === 'all' || trend.platform === platformFilter)
+        );
+
+        // Populate the trend list dynamically
+        filteredTrends.forEach(trend => {
+            const trendCard = document.createElement('div');
+            trendCard.classList.add('trend-card');
+            
+            trendCard.innerHTML = `
+                <h3>${trend.hashtag}</h3>
+                <p>${trend.description}</p>
+                <a href="${trend.exampleLink}" target="_blank" class="button">See Examples</a>
+                <button class="button" onclick="tryThisTrend('${trend.hashtag}')">Try This Trend</button>
+            `;
+            trendList.appendChild(trendCard);
+        });
+    }
+
+    // "Try This Trend" button functionality
+    function tryThisTrend(hashtag) {
+        alert(`You can now use ${hashtag} for your next post! Here are some recommended hashtags to go with it.`);
+        // Here you can add functionality to copy pre-filled content, hashtags, etc.
+    }
+
+    // Event listeners to reload trends on filter change
+    document.getElementById('genre-select').addEventListener('change', loadTrends);
+    document.getElementById('platform-filter').addEventListener('change', loadTrends);
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', loadTrends);
+</script>
+
+</body>
+</html>
