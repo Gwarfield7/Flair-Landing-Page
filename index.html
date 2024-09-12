@@ -120,7 +120,8 @@
         <section class="hero">
             <h1>Elevate Your Music Career</h1>
             <p>Make data-driven decisions to grow your audience, optimize your performances, and accelerate your success.</p>
-            <button class="button" onclick="window.location.href='registration.html'">Start Your Journey</button>
+            <button class="button" onclick="window.location.href='registration.html'"
+()">Start Your Journey</button>
         </section>
 
         <section id="features" class="features">
@@ -144,11 +145,6 @@
                 <h3>Event Listings</h3>
                 <p>Find local events where you can perform or network to boost your career.</p>
             </div>
-        </section>
-
-        <!-- Modular Hotspot Section Placeholder -->
-        <section id="hotspot-section">
-            <!-- The Hotspot Module will be loaded here -->
         </section>
 
         <section id="benefits" class="benefits">
@@ -193,18 +189,8 @@
         function redirectToRegistration() {
             window.location.href = 'registration.html'; // Change this to the actual path of your registration page
         }
-
-        // Load the Hotspot section dynamically (using an external Hotspot file)
-        function loadHotspotSection() {
-            fetch('hotspot.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('hotspot-section').innerHTML = data;
-                });
-        }
-
-        // Load the Hotspot module on page load
-        window.onload = loadHotspotSection;
     </script>
 </body>
 </html>
+
+
